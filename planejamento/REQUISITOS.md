@@ -10,6 +10,10 @@
 
 - **RF04:** O sistema deve permitir o cadastro de uma nova planta com nome, espécie e frequência de rega em dias.
 - **RF05:** O sistema deve permitir a visualização dos detalhes de uma planta específica.
+- **RF05.1:** O sistema deve permitir que o usuário edite os dados de configuração de uma planta cadastrada: nome, espécie e frequência de rega.
+- **RF05.2:** Apenas o usuário proprietário da planta pode editá-la. Usuários não autenticados ou que não sejam donos não podem modificar dados alheios.
+- **RF05.3:** As edições devem atualizar imediatamente os dados persistidos no arquivo JSON e afetar cálculos futuros de alertas (nova frequência de rega é aplicada prospectivamente).
+- **RF05.4:** O sistema deve registrar um log simples de alterações contendo: campo editado, valor anterior, valor novo e data/hora da edição.
 - **RF06:** O sistema deve calcular automaticamente quantos dias se passaram desde o último cuidado registrado.
 - **RF07:** O sistema deve indicar visualmente se uma planta precisa de cuidado (status: ok / precisa de cuidado).
 
@@ -55,3 +59,7 @@
 
 - **RNF13:** A interface deve apresentar indicadores visuais claros para distinguir plantas saudáveis de plantas que necessitam de cuidado.
 - **RNF14:** O painel de alertas deve ser acessível diretamente pela navegação principal da aplicação.
+
+### Imutabilidade de Dados
+
+- **RNF15:** O histórico de cuidados (RF09) é imutável. Registros de cuidados não podem ser editados ou deletados após sua criação, garantindo integridade histórica.
