@@ -1,10 +1,10 @@
-## Requisitos Funcionais
+## Requisitos funcionais
 
-### Gestão de Usuários
+### Gestão de Colaboradores
 
-- **RF01:** O sistema deve permitir o cadastro de usuários com nome e e-mail, restritos aos colaboradores da Verde Vivo.
-- **RF02:** O sistema deve associar cada planta a um único usuário autenticado.
-- **RF03:** O sistema deve permitir que o usuário liste todas as suas plantas cadastradas.
+- **RF01:** O sistema deve permitir o cadastro de colaboradores com nome e e-mail, restritos aos colaboradores da Verde Vivo.
+- **RF02:** O sistema deve associar cada planta a um único colaborador autenticado.
+- **RF03:** O sistema deve permitir que o colaborador liste todas as suas plantas cadastradas.
 
 ### Gestão de Plantas
 
@@ -30,8 +30,8 @@
 ### Segurança e Autenticação
 
 - **RNF01:** O sistema é de **uso exclusivamente interno**, acessível apenas para colaboradores autenticados da Verde Vivo.
-- **RNF02:** O sistema deve implementar autenticação de usuários antes de permitir acesso a qualquer funcionalidade.
-- **RNF03:** Cada usuário deve acessar exclusivamente seus próprios dados, com isolamento completo entre usuários.
+- **RNF02:** O sistema deve implementar autenticação de colaboradores antes de permitir acesso a qualquer funcionalidade.
+- **RNF03:** Cada colaborador deve acessar exclusivamente seus próprios dados, com isolamento completo entre colaboradores.
 
 ### Desempenho e Tecnologia
 
