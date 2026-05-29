@@ -7,3 +7,4 @@
 - Sequências UML
 - [Atividades UML](https://lucid.app/lucidchart/24a271e7-ad5a-405b-8bf3-9458392b651d/edit?viewport_loc=-11%2C259%2C2217%2C1097%2C0_0&invitationId=inv_ddf27422-6d32-4af0-bb54-a86dd6a5ba9b)
 - (Escolha do grupo)
+- [Diagrama de Componentes](https://lucid.app/lucidchart/2919ce57-fe53-4f8b-9285-ce8c3ede226b/edit?viewport_loc=-2180%2C-880%2C6787%2C3220%2C0_0&invitationId=inv_866258bf-7732-4028-9885-f842bea7ab3d)
