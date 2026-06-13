@@ -188,3 +188,56 @@ def atualizar_planta(planta_atualizada: Planta) -> bool:
             salvar_plantas(plantas)
             return True
     return False
+
+
+def atualizar_colaborador(colaborador_atualizado: Colaborador) -> bool:
+    """Substitui os dados de um colaborador existente na lista persistida.
+
+    Localiza o colaborador pelo id e substitui o registro inteiro.
+
+    Args:
+        colaborador_atualizado: Instância de :class:`Colaborador` com os dados novos.
+
+    Returns:
+        True se o colaborador foi encontrado e atualizado, False caso contrário.
+    """
+    colaboradores = carregar_colaboradores()
+    for i, colaborador in enumerate(colaboradores):
+        if colaborador.id == colaborador_atualizado.id:
+            colaboradores[i] = colaborador_atualizado
+            salvar_colaboradores(colaboradores)
+            return True
+    return False
+
+
+def remover_colaborador(colaborador_id: str) -> bool:
+    """Remove um colaborador da lista persistida pelo seu id.
+
+    Args:
+        colaborador_id: Identificador único do colaborador a remover.
+
+    Returns:
+        True se o colaborador foi encontrado e removido, False caso contrário.
+    """
+    colaboradores = carregar_colaboradores()
+    novos = [c for c in colaboradores if c.id != colaborador_id]
+    if len(novos) == len(colaboradores):
+        return False
+    salvar_colaboradores(novos)
+    return True
+
+
+def remover_plantas_do_colaborador(colaborador_id: str) -> int:
+    """Remove todas as plantas pertencentes ao colaborador informado.
+
+    Args:
+        colaborador_id: ID do colaborador cujas plantas serão removidas.
+
+    Returns:
+        Número de plantas removidas.
+    """
+    plantas = carregar_plantas()
+    restantes = [p for p in plantas if p.colaborador_id != colaborador_id]
+    removidas = len(plantas) - len(restantes)
+    salvar_plantas(restantes)
+    return removidas

@@ -5,16 +5,18 @@ Executa uma sequência de operações cobrindo:
   - Cadastro e busca de plantas
   - Registro de cuidados (rega, adubação, poda)
   - Geração e verificação de alertas
-  - Log de edições
-  - Persistência JSON (salvar e recarregar)
+  - Log de edições de planta
+  - Edição e exclusão de colaborador (com cascade em plantas)
+  - Persistência JSON (salvar e recarregar dos arquivos reais)
+
+ATENÇÃO: Este script escreve diretamente em data/colaboradores.json e
+data/plantas.json. Os dados gerados pelos testes persistem após a execução
+para que você possa inspecioná-los manualmente.
 
 Uso:
     python testar_backend.py
 """
 
-import json
-import os
-import shutil
 import sys
 from datetime import date, timedelta
 
@@ -31,7 +33,10 @@ def ok(descricao: str) -> None:
 def falha(descricao: str, detalhe: str = "") -> None:
     global FALHOU
     FALHOU += 1
-    print(f"  [FALHA] {descricao}", f"→ {detalhe}" if detalhe else "")
+    msg = f"  [FALHA] {descricao}"
+    if detalhe:
+        msg += f" → {detalhe}"
+    print(msg)
 
 
 def secao(titulo: str) -> None:
@@ -40,22 +45,10 @@ def secao(titulo: str) -> None:
     print(f"{'='*55}")
 
 
-def _usar_dados_temporarios():
-    """Redireciona a camada de persistência para arquivos temporários."""
-    import services.repositorio as repo
-    repo._ARQUIVO_COLABORADORES = "data/_test_colaboradores.json"
-    repo._ARQUIVO_PLANTAS = "data/_test_plantas.json"
-    for arq in [repo._ARQUIVO_COLABORADORES, repo._ARQUIVO_PLANTAS]:
-        with open(arq, "w") as f:
-            json.dump([], f)
-
-
-def _limpar_dados_temporarios():
-    import services.repositorio as repo
-    for arq in [repo._ARQUIVO_COLABORADORES, repo._ARQUIVO_PLANTAS]:
-        if os.path.exists(arq):
-            os.remove(arq)
-
+print("\n" + "!"*55)
+print("  ATENÇÃO: os dados serão gravados em data/*.json")
+print("  Inspecione os arquivos após a execução.")
+print("!"*55)
 
 # ---------------------------------------------------------------------------
 # 1. Models — Colaborador
@@ -166,16 +159,17 @@ ok("Alerta sem histórico: dias_sem_cuidado → None") if alerta_sem_hist.dias_s
 ok("Alerta sem histórico: dias_atraso → None") if alerta_sem_hist.dias_atraso is None else falha("Esperado None")
 
 # ---------------------------------------------------------------------------
-# 5. Services — Repositório JSON
+# 5. Services — Repositório JSON (arquivos reais)
 # ---------------------------------------------------------------------------
-secao("5. Service: Repositório (persistência JSON)")
-
-_usar_dados_temporarios()
+secao("5. Service: Repositório (persistência JSON — arquivos reais)")
 
 from services.repositorio import (
     adicionar_colaborador,
+    atualizar_colaborador,
     buscar_colaborador_por_email,
     buscar_colaborador_por_id,
+    remover_colaborador,
+    remover_plantas_do_colaborador,
     adicionar_planta,
     buscar_planta_por_id,
     carregar_plantas_do_colaborador,
@@ -185,7 +179,7 @@ from services.repositorio import (
 )
 
 adicionar_colaborador(colab)
-ok("Colaborador persistido")
+ok("Colaborador persistido em data/colaboradores.json")
 
 c_buscado = buscar_colaborador_por_email("ana@exemplo.com")
 ok("buscar_colaborador_por_email") if c_buscado and c_buscado.nome == "Ana Silva" else falha("Não encontrado")
@@ -198,10 +192,11 @@ ok("Email inexistente retorna None") if nao_existe is None else falha("Deveria s
 
 adicionar_planta(planta)
 adicionar_planta(planta2)
-ok("Plantas persistidas")
+ok("Plantas persistidas em data/plantas.json")
 
 plantas_carregadas = carregar_plantas()
-ok("Plantas carregadas do JSON") if len(plantas_carregadas) == 2 else falha("Quantidade incorreta", len(plantas_carregadas))
+qtd_plantas = len([p for p in plantas_carregadas if p.colaborador_id == colab.id])
+ok("Plantas da Ana carregadas do JSON") if qtd_plantas == 2 else falha("Quantidade incorreta", qtd_plantas)
 
 plantas_colab = carregar_plantas_do_colaborador(colab.id)
 ok("Filtro por colaborador") if len(plantas_colab) == 2 else falha("Filtro incorreto", len(plantas_colab))
@@ -219,7 +214,7 @@ resultado = atualizar_planta(planta)
 ok("atualizar_planta retorna True") if resultado else falha("Retornou False")
 
 p_atualizada = buscar_planta_por_id(planta.id)
-ok("Edição persistida") if p_atualizada.nome == "Samambaia Editada" else falha("Nome não atualizado")
+ok("Edição de planta persistida") if p_atualizada.nome == "Samambaia Editada" else falha("Nome não atualizado")
 ok("Log de edições persistido") if len(p_atualizada.log_edicoes) == 1 else falha("Log não salvo")
 
 falso_id = atualizar_planta(
@@ -251,7 +246,7 @@ ok("Busca vazia retorna catálogo completo") if resultados_vazio else falha("Lis
 # ---------------------------------------------------------------------------
 # 7. Fluxo integrado — da criação ao alerta
 # ---------------------------------------------------------------------------
-secao("7. Fluxo integrado: cadastro → cuidado → alerta")
+secao("7. Fluxo integrado: cadastro → cuidado → alerta → rega rápida")
 
 from services.repositorio import carregar_plantas_do_colaborador as _carregar
 
@@ -273,21 +268,78 @@ ok("Isolamento por colaborador") if len(plantas_b) == 1 and plantas_b[0].id == p
 p = buscar_planta_por_id(planta_b.id)
 ok("Orquídea precisa de cuidado (sem histórico)") if p.precisa_cuidado() else falha("Deveria precisar")
 
-rega_hoje = Rega(data=hoje, observacao="Rega inicial")
-p.registrar_cuidado(rega_hoje)
+alertas_antes = [Alerta.from_planta(pl) for pl in _carregar(colab_b.id) if pl.precisa_cuidado()]
+ok("Alerta gerado antes da rega") if len(alertas_antes) == 1 else falha("Esperado 1 alerta", len(alertas_antes))
+
+rega_rapida = Rega(data=hoje, observacao="Rega rápida via painel de alertas.")
+p.registrar_cuidado(rega_rapida)
 atualizar_planta(p)
 
 p_apos = buscar_planta_por_id(planta_b.id)
 ok("Após rega, não precisa de cuidado") if not p_apos.precisa_cuidado() else falha("Ainda deveria estar ok")
 
-alertas_b = [Alerta.from_planta(pl) for pl in _carregar(colab_b.id) if pl.precisa_cuidado()]
-ok("Painel de alertas vazio após rega") if len(alertas_b) == 0 else falha("Alerta indevido", len(alertas_b))
+alertas_apos = [Alerta.from_planta(pl) for pl in _carregar(colab_b.id) if pl.precisa_cuidado()]
+ok("Painel de alertas vazio após rega") if len(alertas_apos) == 0 else falha("Alerta indevido", len(alertas_apos))
+
+# ---------------------------------------------------------------------------
+# 8. Edição e exclusão de colaborador
+# ---------------------------------------------------------------------------
+secao("8. Edição e exclusão de colaborador")
+
+colab_c = Colaborador.criar(nome="Carla Souza", email="carla@exemplo.com", senha="minhasenha")
+adicionar_colaborador(colab_c)
+planta_c1 = Planta(nome="Espada-de-São-Jorge", especie={}, frequencia_rega=10, colaborador_id=colab_c.id)
+planta_c2 = Planta(nome="Suculenta", especie={}, frequencia_rega=14, colaborador_id=colab_c.id)
+adicionar_planta(planta_c1)
+adicionar_planta(planta_c2)
+ok("Colaborador Carla e 2 plantas criados para teste de edição/exclusão")
+
+colab_c.nome = "Carla Oliveira"
+colab_c.email = "carla.oliveira@exemplo.com"
+res_edit = atualizar_colaborador(colab_c)
+ok("atualizar_colaborador retorna True") if res_edit else falha("Retornou False")
+
+c_editado = buscar_colaborador_por_id(colab_c.id)
+ok("Nome atualizado no JSON") if c_editado.nome == "Carla Oliveira" else falha("Nome não salvo", c_editado.nome)
+ok("E-mail atualizado no JSON") if c_editado.email == "carla.oliveira@exemplo.com" else falha("E-mail não salvo")
+ok("Senha preservada após edição") if c_editado.verificar_senha("minhasenha") else falha("Senha perdida")
+
+nova_hash = Colaborador._hash_senha("novasenha456")
+colab_c.senha_hash = nova_hash
+atualizar_colaborador(colab_c)
+c_nova_senha = buscar_colaborador_por_id(colab_c.id)
+ok("Atualização de senha persistida") if c_nova_senha.verificar_senha("novasenha456") else falha("Nova senha inválida")
+ok("Senha antiga rejeitada") if not c_nova_senha.verificar_senha("minhasenha") else falha("Senha antiga ainda aceita")
+
+res_falso = atualizar_colaborador(
+    Colaborador(nome="X", email="x@x.com", senha_hash="x", id="id-inexistente")
+)
+ok("atualizar_colaborador retorna False para ID inexistente") if not res_falso else falha("Deveria ser False")
+
+qtd_antes = len(carregar_plantas_do_colaborador(colab_c.id))
+ok(f"Carla tem {qtd_antes} planta(s) antes da exclusão") if qtd_antes == 2 else falha("Esperado 2", qtd_antes)
+
+qtd_removidas = remover_plantas_do_colaborador(colab_c.id)
+ok("remover_plantas_do_colaborador retorna 2") if qtd_removidas == 2 else falha("Esperado 2", qtd_removidas)
+
+qtd_apos = len(carregar_plantas_do_colaborador(colab_c.id))
+ok("Plantas da Carla removidas") if qtd_apos == 0 else falha("Plantas ainda existem", qtd_apos)
+
+outras_intactas = len(carregar_plantas_do_colaborador(colab.id))
+ok("Plantas dos outros colaboradores intactas") if outras_intactas == 2 else falha("Plantas removidas indevidamente", outras_intactas)
+
+res_rem = remover_colaborador(colab_c.id)
+ok("remover_colaborador retorna True") if res_rem else falha("Retornou False")
+
+c_removida = buscar_colaborador_por_id(colab_c.id)
+ok("Colaborador não encontrado após exclusão") if c_removida is None else falha("Ainda existe no JSON")
+
+res_rem_falso = remover_colaborador("id-inexistente")
+ok("remover_colaborador retorna False para ID inexistente") if not res_rem_falso else falha("Deveria ser False")
 
 # ---------------------------------------------------------------------------
 # Resultado final
 # ---------------------------------------------------------------------------
-_limpar_dados_temporarios()
-
 print(f"\n{'='*55}")
 total = PASSOU + FALHOU
 print(f"  Resultado: {PASSOU}/{total} testes passaram", end="")
@@ -296,3 +348,8 @@ if FALHOU:
     sys.exit(1)
 else:
     print("  — Tudo OK!")
+
+print("\n  Dados gravados em:")
+print("    data/colaboradores.json  (Ana Silva, Bruno Lima)")
+print("    data/plantas.json        (Samambaia Editada, Cacto Velho, Orquídea do Bruno)")
+print("  Inspecione os arquivos para ver a estrutura real do JSON.\n")

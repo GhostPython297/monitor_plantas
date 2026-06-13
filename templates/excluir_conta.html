@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Excluir Conta{% endblock %}
+
+{% block conteudo %}
+<div class="form-container">
+  <h1>Excluir conta</h1>
+  <p class="aviso-perigo">
+    Esta ação é <strong>irreversível</strong>. Sua conta e todas as suas plantas
+    serão permanentemente removidas.
+  </p>
+
+  <form method="POST" action="{{ url_for('colaborador.excluir') }}">
+    <label for="senha">Confirme sua senha para continuar</label>
+    <input type="password" id="senha" name="senha" required autofocus>
+
+    <button type="submit" class="btn btn-perigo">Excluir minha conta permanentemente</button>
+    <a href="{{ url_for('colaborador.perfil') }}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
