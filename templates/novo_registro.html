@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar Cuidado — {{ planta.nome }}{% endblock %}
+
+{% block conteudo %}
+<h1>Registrar Cuidado: {{ planta.nome }}</h1>
+
+<form method="POST" action="{{ url_for('registro.novo', planta_id=planta.id) }}">
+  <label for="tipo">Tipo de cuidado</label>
+  <select id="tipo" name="tipo">
+    {% for t in tipos %}
+    <option value="{{ t }}">{{ t|capitalize }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="data">Data do cuidado</label>
+  <input type="date" id="data" name="data" value="{{ hoje }}" required>
+
+  <label for="observacao">Observação (opcional)</label>
+  <textarea id="observacao" name="observacao" rows="3" placeholder="Ex: solo úmido, folhas amareladas..."></textarea>
+
+  <button type="submit">Registrar</button>
+  <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}">Cancelar</a>
+</form>
+{% endblock %}

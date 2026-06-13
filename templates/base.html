@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Monitor de Plantas{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% if session.colaborador_id %}
+<nav>
+  <span class="nav-logo">🌿 Monitor de Plantas</span>
+  <div class="nav-links">
+    <a href="{{ url_for('planta.listar') }}">Minhas Plantas</a>
+    <a href="{{ url_for('alerta.painel') }}">Alertas</a>
+    <span class="nav-user">{{ session.colaborador_nome }}</span>
+    <a href="{{ url_for('colaborador.logout') }}">Sair</a>
+  </div>
+</nav>
+{% endif %}
+
+<main>
+  {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% for categoria, msg in mensagens %}
+      <div class="flash flash-{{ categoria }}">{{ msg }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  {% block conteudo %}{% endblock %}
+</main>
+
+</body>
+</html>

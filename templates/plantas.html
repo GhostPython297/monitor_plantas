@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block titulo %}Minhas Plantas{% endblock %}
+
+{% block conteudo %}
+<div class="page-header">
+  <h1>Minhas Plantas</h1>
+  <a href="{{ url_for('planta.nova') }}" class="btn">+ Nova Planta</a>
+</div>
+
+{% if plantas %}
+<ul class="lista-plantas">
+  {% for planta in plantas %}
+  <li class="card-planta">
+    <div class="card-info">
+      <strong>{{ planta.nome }}</strong>
+      {% if planta.especie %}
+        <span class="especie">{{ planta.especie.get('nome_comum', '') }}</span>
+      {% endif %}
+      <span class="freq">Rega a cada {{ planta.frequencia_rega }} dia(s)</span>
+      {% set dias = planta.dias_sem_cuidado() %}
+      {% if dias is not none %}
+        <span class="dias">Último cuidado: há {{ dias }} dia(s)</span>
+      {% else %}
+        <span class="dias">Nenhum cuidado registrado</span>
+      {% endif %}
+    </div>
+    <div class="card-status">
+      {% if planta.precisa_cuidado() %}
+        <span class="badge status-alerta">Precisa de Cuidado</span>
+      {% else %}
+        <span class="badge status-ok">OK</span>
+      {% endif %}
+    </div>
+    <div class="card-acoes">
+      <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}">Ver</a>
+      <a href="{{ url_for('registro.novo', planta_id=planta.id) }}">Registrar Cuidado</a>
+      <a href="{{ url_for('planta.editar', planta_id=planta.id) }}">Editar</a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="vazio">Nenhuma planta cadastrada ainda. <a href="{{ url_for('planta.nova') }}">Cadastre a primeira!</a></p>
+{% endif %}
+{% endblock %}
