@@ -962,7 +962,6 @@
         "temp_minima": 0
       }
     ],
-    "echeveria": [],
     "aloe vera": [
       {
         "id": "728",
@@ -1384,10 +1383,6 @@
         "luz": "None",
         "temp_minima": 0
       }
-    ],
-    "suculenta": [],
-    "espada de são jorge": [],
-    "espada-de-são-jorge": [],
-    "espada": []
+    ]
   }
 }

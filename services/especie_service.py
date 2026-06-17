@@ -176,6 +176,9 @@ def buscar_especies(query: str) -> List[dict]:
         dados = resposta.json()
         resultados = [_normalizar_especie(item) for item in dados.get("data", [])]
 
+        if not resultados:
+            return _buscar_fallback(query)
+
         cache.setdefault("buscas", {})[chave] = resultados
         for esp in resultados:
             cache.setdefault("especies", {})[esp["id"]] = esp
