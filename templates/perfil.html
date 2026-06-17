@@ -2,38 +2,52 @@
 {% block titulo %}Meu Perfil{% endblock %}
 
 {% block conteudo %}
-<div class="page-header">
-  <h1>Meu Perfil</h1>
-  <a href="{{ url_for('planta.listar') }}">← Minhas Plantas</a>
-</div>
+<div class="max-w-xl mx-auto">
+  <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+    <h1 class="text-2xl font-bold text-green-900">👤 Meu Perfil</h1>
+    <a href="{{ url_for('planta.listar') }}" class="glass-btn-secondary">← Minhas Plantas</a>
+  </div>
 
-<form method="POST" action="{{ url_for('colaborador.perfil') }}" class="form-container">
-  <p class="aviso">Para salvar qualquer alteração, confirme sua senha atual.</p>
+  <div class="glass-card p-6 mb-6">
+    <p class="text-amber-800 text-sm bg-amber-50/40 border border-amber-200 rounded-xl px-4 py-3 mb-5">
+      🔒 Para salvar qualquer alteração, confirme sua senha atual.
+    </p>
 
-  <label for="nome">Nome completo</label>
-  <input type="text" id="nome" name="nome" value="{{ colaborador.nome }}" required>
+    <form method="POST" action="{{ url_for('colaborador.perfil') }}" class="flex flex-col gap-4">
+      <div>
+        <label for="nome" class="block text-sm font-medium text-green-800 mb-1">Nome completo</label>
+        <input type="text" id="nome" name="nome" value="{{ colaborador.nome }}" required class="glass-input">
+      </div>
 
-  <label for="email">E-mail</label>
-  <input type="email" id="email" name="email" value="{{ colaborador.email }}" required>
+      <div>
+        <label for="email" class="block text-sm font-medium text-green-800 mb-1">E-mail</label>
+        <input type="email" id="email" name="email" value="{{ colaborador.email }}" required class="glass-input">
+      </div>
 
-  <fieldset>
-    <legend>Alterar senha <em>(deixe em branco para manter a atual)</em></legend>
-    <label for="nova_senha">Nova senha</label>
-    <input type="password" id="nova_senha" name="nova_senha" minlength="6"
-           placeholder="Mínimo 6 caracteres">
-  </fieldset>
+      <div class="glass-card p-4">
+        <p class="text-sm font-semibold text-green-800 mb-3">Alterar senha <span class="font-normal text-green-600">(deixe em branco para manter a atual)</span></p>
+        <div>
+          <label for="nova_senha" class="block text-sm font-medium text-green-800 mb-1">Nova senha</label>
+          <input type="password" id="nova_senha" name="nova_senha" minlength="6"
+                 placeholder="Mínimo 6 caracteres" class="glass-input">
+        </div>
+      </div>
 
-  <label for="senha_atual">Senha atual <strong>(obrigatória para confirmar)</strong></label>
-  <input type="password" id="senha_atual" name="senha_atual" required>
+      <div>
+        <label for="senha_atual" class="block text-sm font-medium text-green-800 mb-1">Senha atual <strong>(obrigatória para confirmar)</strong></label>
+        <input type="password" id="senha_atual" name="senha_atual" required class="glass-input">
+      </div>
 
-  <button type="submit">Salvar alterações</button>
-</form>
+      <div class="pt-2">
+        <button type="submit" class="glass-btn-primary">Salvar alterações</button>
+      </div>
+    </form>
+  </div>
 
-<hr>
-
-<div class="zona-perigo">
-  <h2>Zona de perigo</h2>
-  <p>A exclusão da conta é permanente e remove também todas as suas plantas.</p>
-  <a href="{{ url_for('colaborador.excluir') }}" class="btn btn-perigo">Excluir minha conta</a>
+  <div class="glass-card p-6 border border-red-200/50">
+    <h2 class="text-lg font-semibold text-red-800 mb-2">⚠️ Zona de perigo</h2>
+    <p class="text-sm text-red-700 mb-4">A exclusão da conta é permanente e remove também todas as suas plantas.</p>
+    <a href="{{ url_for('colaborador.excluir') }}" class="glass-btn-danger text-sm">Excluir minha conta</a>
+  </div>
 </div>
 {% endblock %}

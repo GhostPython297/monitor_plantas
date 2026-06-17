@@ -4,31 +4,176 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block titulo %}Monitor de Plantas{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', system-ui, sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #a8edca 0%, #c3f0d8 40%, #e0f7f0 100%);
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .glass-btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .glass-btn-primary:hover { opacity: 0.85; }
+
+    .glass-btn-secondary {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 500;
+      color: #065f46;
+      transition: background 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .glass-btn-secondary:hover { background: rgba(255, 255, 255, 0.5); }
+
+    .glass-btn-danger {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .glass-btn-danger:hover { opacity: 0.85; }
+
+    .glass-input {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 0.75rem;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .glass-input:focus {
+      border-color: #10b981;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .status-ok {
+      background: rgba(16, 185, 129, 0.15);
+      color: #065f46;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 9999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .status-alerta {
+      background: rgba(245, 158, 11, 0.15);
+      color: #92400e;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 9999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .flash-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #065f46;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .flash-error {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #7f1d1d;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .flash-warning {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #92400e;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .flash-info {
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #1e3a8a;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
 
 {% if session.colaborador_id %}
-<nav>
-  <a href="{{ url_for('planta.listar') }}" class="nav-logo">🌿 Monitor de Plantas</a>
-  <div class="nav-links">
-    <a href="{{ url_for('planta.listar') }}">Minhas Plantas</a>
-    <a href="{{ url_for('alerta.painel') }}" class="nav-alertas">
-      Alertas
+<nav class="glass-nav px-6 py-3 flex items-center justify-between flex-wrap gap-3">
+  <a href="{{ url_for('planta.listar') }}" class="text-green-800 font-bold text-lg no-underline">🌿 Monitor de Plantas</a>
+  <div class="flex gap-3 items-center flex-wrap">
+    <a href="{{ url_for('planta.listar') }}" class="text-green-700 font-medium hover:text-green-900 transition-colors no-underline">Minhas Plantas</a>
+    <a href="{{ url_for('alerta.painel') }}" class="text-amber-700 font-medium hover:text-amber-900 transition-colors no-underline flex items-center gap-1">
+      ⚠ Alertas
       {% if contagem_alertas > 0 %}
-        <span class="badge-alerta">{{ contagem_alertas }}</span>
+        <span class="status-alerta" style="font-size:0.7rem; padding: 0.1rem 0.5rem;">{{ contagem_alertas }}</span>
       {% endif %}
     </a>
-    <a href="{{ url_for('colaborador.perfil') }}" class="nav-user">{{ session.colaborador_nome }}</a>
-    <a href="{{ url_for('colaborador.logout') }}" class="nav-sair">Sair</a>
+    <a href="{{ url_for('colaborador.perfil') }}" class="text-green-700 font-medium hover:text-green-900 transition-colors no-underline">{{ session.colaborador_nome }}</a>
+    <a href="{{ url_for('colaborador.logout') }}" class="glass-btn-secondary text-sm">Sair</a>
   </div>
 </nav>
 {% endif %}
 
-<main>
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   {% with mensagens = get_flashed_messages(with_categories=true) %}
     {% for categoria, msg in mensagens %}
-      <div class="flash flash-{{ categoria }}">{{ msg }}</div>
+      <div class="flash-{{ categoria }}">{{ msg }}</div>
     {% endfor %}
   {% endwith %}
 

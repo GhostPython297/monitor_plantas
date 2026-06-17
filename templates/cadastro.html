@@ -2,20 +2,35 @@
 {% block titulo %}Cadastro — Monitor de Plantas{% endblock %}
 
 {% block conteudo %}
-<div class="form-container">
-  <h1>Criar conta</h1>
-  <form method="POST" action="{{ url_for('colaborador.cadastro') }}">
-    <label for="nome">Nome completo</label>
-    <input type="text" id="nome" name="nome" required autofocus>
+<div class="max-w-sm mx-auto mt-20 glass-card p-8">
+  <div class="text-center mb-6">
+    <div class="text-4xl mb-2">🌱</div>
+    <h1 class="text-2xl font-bold text-green-900">Criar conta</h1>
+    <p class="text-green-700 text-sm mt-1">Comece a monitorar suas plantas</p>
+  </div>
 
-    <label for="email">E-mail</label>
-    <input type="email" id="email" name="email" required>
+  <form method="POST" action="{{ url_for('colaborador.cadastro') }}" class="flex flex-col gap-4">
+    <div>
+      <label for="nome" class="block text-sm font-medium text-green-800 mb-1">Nome completo</label>
+      <input type="text" id="nome" name="nome" required autofocus class="glass-input">
+    </div>
 
-    <label for="senha">Senha</label>
-    <input type="password" id="senha" name="senha" required minlength="6">
+    <div>
+      <label for="email" class="block text-sm font-medium text-green-800 mb-1">E-mail</label>
+      <input type="email" id="email" name="email" required class="glass-input">
+    </div>
 
-    <button type="submit">Criar conta</button>
+    <div>
+      <label for="senha" class="block text-sm font-medium text-green-800 mb-1">Senha</label>
+      <input type="password" id="senha" name="senha" required minlength="6" class="glass-input" placeholder="Mínimo 6 caracteres">
+    </div>
+
+    <button type="submit" class="glass-btn-primary text-center mt-2">Criar conta</button>
   </form>
-  <p>Já tem conta? <a href="{{ url_for('colaborador.login') }}">Entrar</a></p>
+
+  <p class="text-center text-sm text-green-700 mt-5">
+    Já tem conta?
+    <a href="{{ url_for('colaborador.login') }}" class="text-green-900 font-semibold hover:underline">Entrar</a>
+  </p>
 </div>
 {% endblock %}

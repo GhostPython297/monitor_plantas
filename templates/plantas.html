@@ -2,44 +2,53 @@
 {% block titulo %}Minhas Plantas{% endblock %}
 
 {% block conteudo %}
-<div class="page-header">
-  <h1>Minhas Plantas</h1>
-  <a href="{{ url_for('planta.nova') }}" class="btn">+ Nova Planta</a>
+<div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+  <h1 class="text-2xl font-bold text-green-900">🪴 Minhas Plantas</h1>
+  <a href="{{ url_for('planta.nova') }}" class="glass-btn-primary">+ Nova Planta</a>
 </div>
 
 {% if plantas %}
-<ul class="lista-plantas">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
   {% for planta in plantas %}
-  <li class="card-planta">
-    <div class="card-info">
-      <strong>{{ planta.nome }}</strong>
-      {% if planta.especie %}
-        <span class="especie">{{ planta.especie.get('nome_comum', '') }}</span>
+  <div class="glass-card p-4 flex flex-col gap-3 relative">
+    <div class="absolute top-4 right-4">
+      {% if planta.precisa_cuidado() %}
+        <span class="status-alerta">Precisa de Cuidado</span>
+      {% else %}
+        <span class="status-ok">OK</span>
       {% endif %}
-      <span class="freq">Rega a cada {{ planta.frequencia_rega }} dia(s)</span>
+    </div>
+
+    <div class="pr-24">
+      <h2 class="font-bold text-green-900 text-lg leading-tight">{{ planta.nome }}</h2>
+      {% if planta.especie %}
+        <p class="text-green-700 text-sm italic mt-0.5">{{ planta.especie.get('nome_comum', '') }}</p>
+      {% endif %}
+    </div>
+
+    <div class="text-sm text-green-800 flex flex-col gap-1">
+      <span>💧 Rega a cada <strong>{{ planta.frequencia_rega }}</strong> dia(s)</span>
       {% set dias = planta.dias_sem_cuidado() %}
       {% if dias is not none %}
-        <span class="dias">Último cuidado: há {{ dias }} dia(s)</span>
+        <span>🕐 Último cuidado: há <strong>{{ dias }}</strong> dia(s)</span>
       {% else %}
-        <span class="dias">Nenhum cuidado registrado</span>
+        <span class="text-amber-700">⚠ Nenhum cuidado registrado</span>
       {% endif %}
     </div>
-    <div class="card-status">
-      {% if planta.precisa_cuidado() %}
-        <span class="badge status-alerta">Precisa de Cuidado</span>
-      {% else %}
-        <span class="badge status-ok">OK</span>
-      {% endif %}
+
+    <div class="flex gap-2 flex-wrap mt-auto pt-2 border-t border-white/30">
+      <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}" class="glass-btn-secondary text-sm">Ver</a>
+      <a href="{{ url_for('registro.novo', planta_id=planta.id) }}" class="glass-btn-primary text-sm">💧 Registrar</a>
+      <a href="{{ url_for('planta.editar', planta_id=planta.id) }}" class="glass-btn-secondary text-sm">Editar</a>
     </div>
-    <div class="card-acoes">
-      <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}">Ver</a>
-      <a href="{{ url_for('registro.novo', planta_id=planta.id) }}">Registrar Cuidado</a>
-      <a href="{{ url_for('planta.editar', planta_id=planta.id) }}">Editar</a>
-    </div>
-  </li>
+  </div>
   {% endfor %}
-</ul>
+</div>
 {% else %}
-<p class="vazio">Nenhuma planta cadastrada ainda. <a href="{{ url_for('planta.nova') }}">Cadastre a primeira!</a></p>
+<div class="glass-card p-10 text-center">
+  <div class="text-5xl mb-4">🌱</div>
+  <p class="text-green-800 text-lg mb-4">Nenhuma planta cadastrada ainda.</p>
+  <a href="{{ url_for('planta.nova') }}" class="glass-btn-primary">Cadastre a primeira!</a>
+</div>
 {% endif %}
 {% endblock %}

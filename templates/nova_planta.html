@@ -2,56 +2,67 @@
 {% block titulo %}Nova Planta{% endblock %}
 
 {% block conteudo %}
-<h1>Cadastrar Nova Planta</h1>
+<div class="max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold text-green-900 mb-6">🌿 Cadastrar Nova Planta</h1>
 
-<section class="busca-especie">
-  <h2>1. Buscar espécie (opcional)</h2>
-  <form method="POST" action="{{ url_for('planta.nova') }}">
-    <input type="hidden" name="acao" value="buscar">
-    <div class="busca-linha">
-      <input type="text" name="query" value="{{ query|default('') }}" placeholder="Ex: samambaia, cacto...">
-      <button type="submit">Buscar</button>
-    </div>
-  </form>
+  <div class="glass-card p-6 mb-4">
+    <h2 class="text-lg font-semibold text-green-800 mb-4">1. Buscar espécie <span class="text-sm font-normal text-green-600">(opcional)</span></h2>
+    <form method="POST" action="{{ url_for('planta.nova') }}">
+      <input type="hidden" name="acao" value="buscar">
+      <div class="flex gap-2">
+        <input type="text" name="query" value="{{ query|default('') }}" placeholder="Ex: samambaia, cacto..." class="glass-input">
+        <button type="submit" class="glass-btn-secondary whitespace-nowrap">Buscar</button>
+      </div>
+    </form>
 
-  {% if resultados %}
-  <ul class="lista-especies">
-    {% for esp in resultados %}
-    <li>
-      <form method="POST" action="{{ url_for('planta.nova') }}">
-        <input type="hidden" name="acao" value="selecionar">
-        <input type="hidden" name="especie_id" value="{{ esp.id }}">
-        <span><strong>{{ esp.nome_comum }}</strong> — <em>{{ esp.nome_cientifico }}</em> (rega a cada {{ esp.frequencia_rega }} dias)</span>
-        <button type="submit">Selecionar</button>
-      </form>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</section>
-
-<section class="form-planta">
-  <h2>2. Dados da planta</h2>
-  <form method="POST" action="{{ url_for('planta.nova') }}">
-    <input type="hidden" name="acao" value="salvar">
-
-    {% if especie_selecionada %}
-    <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
-    <div class="especie-selecionada">
-      <strong>Espécie:</strong> {{ especie_selecionada.nome_comum }}
-      ({{ especie_selecionada.nome_cientifico }})
-    </div>
+    {% if resultados %}
+    <ul class="mt-4 flex flex-col gap-2">
+      {% for esp in resultados %}
+      <li class="glass-card p-3 flex items-center justify-between gap-3 flex-wrap">
+        <span class="text-green-900 text-sm">
+          <strong>{{ esp.nome_comum }}</strong> — <em>{{ esp.nome_cientifico }}</em>
+          <br><span class="text-green-600">💧 Rega a cada {{ esp.frequencia_rega }} dias</span>
+        </span>
+        <form method="POST" action="{{ url_for('planta.nova') }}">
+          <input type="hidden" name="acao" value="selecionar">
+          <input type="hidden" name="especie_id" value="{{ esp.id }}">
+          <button type="submit" class="glass-btn-primary text-sm">Selecionar</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
     {% endif %}
+  </div>
 
-    <label for="nome">Nome da planta</label>
-    <input type="text" id="nome" name="nome" required placeholder="Ex: Samambaia do escritório">
+  <div class="glass-card p-6">
+    <h2 class="text-lg font-semibold text-green-800 mb-4">2. Dados da planta</h2>
+    <form method="POST" action="{{ url_for('planta.nova') }}" class="flex flex-col gap-4">
+      <input type="hidden" name="acao" value="salvar">
 
-    <label for="frequencia_rega">Frequência de rega (dias)</label>
-    <input type="number" id="frequencia_rega" name="frequencia_rega" min="1" max="365"
-           value="{{ especie_selecionada.frequencia_rega if especie_selecionada else 7 }}" required>
+      {% if especie_selecionada %}
+      <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
+      <div class="glass-card p-3 text-green-800 text-sm">
+        ✅ <strong>Espécie selecionada:</strong> {{ especie_selecionada.nome_comum }}
+        <em>({{ especie_selecionada.nome_cientifico }})</em>
+      </div>
+      {% endif %}
 
-    <button type="submit">Salvar Planta</button>
-    <a href="{{ url_for('planta.listar') }}">Cancelar</a>
-  </form>
-</section>
+      <div>
+        <label for="nome" class="block text-sm font-medium text-green-800 mb-1">Nome da planta</label>
+        <input type="text" id="nome" name="nome" required placeholder="Ex: Samambaia do escritório" class="glass-input">
+      </div>
+
+      <div>
+        <label for="frequencia_rega" class="block text-sm font-medium text-green-800 mb-1">Frequência de rega (dias)</label>
+        <input type="number" id="frequencia_rega" name="frequencia_rega" min="1" max="365"
+               value="{{ especie_selecionada.frequencia_rega if especie_selecionada else 7 }}" required class="glass-input">
+      </div>
+
+      <div class="flex gap-3 flex-wrap pt-2">
+        <button type="submit" class="glass-btn-primary">Salvar Planta</button>
+        <a href="{{ url_for('planta.listar') }}" class="glass-btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

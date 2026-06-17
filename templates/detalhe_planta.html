@@ -2,78 +2,88 @@
 {% block titulo %}{{ planta.nome }} — Detalhes{% endblock %}
 
 {% block conteudo %}
-<div class="page-header">
-  <h1>{{ planta.nome }}</h1>
-  <div class="acoes">
-    <a href="{{ url_for('registro.novo', planta_id=planta.id) }}" class="btn">+ Registrar Cuidado</a>
-    <a href="{{ url_for('planta.editar', planta_id=planta.id) }}" class="btn btn-secundario">Editar</a>
-    <a href="{{ url_for('planta.listar') }}">← Voltar</a>
+<div class="glass-card p-6 mb-6">
+  <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
+    <div>
+      <h1 class="text-2xl font-bold text-green-900">{{ planta.nome }}</h1>
+      {% if planta.especie %}
+        <p class="text-green-700 italic text-sm mt-1">{{ planta.especie.get('nome_comum', '') }}</p>
+      {% endif %}
+    </div>
+    <div class="flex items-center gap-2 flex-wrap">
+      {% if planta.precisa_cuidado() %}
+        <span class="status-alerta">Precisa de Cuidado</span>
+      {% else %}
+        <span class="status-ok">OK</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="flex gap-2 flex-wrap">
+    <a href="{{ url_for('registro.novo', planta_id=planta.id) }}" class="glass-btn-primary">+ Registrar Cuidado</a>
+    <a href="{{ url_for('planta.editar', planta_id=planta.id) }}" class="glass-btn-secondary">Editar</a>
+    <a href="{{ url_for('planta.listar') }}" class="glass-btn-secondary">← Voltar</a>
   </div>
 </div>
 
-<section class="detalhes-info">
-  {% if planta.especie %}
-  <dl>
-    <dt>Espécie</dt>
-    <dd>{{ planta.especie.get('nome_comum', '—') }} <em>({{ planta.especie.get('nome_cientifico', '') }})</em></dd>
-    <dt>Luz</dt>
-    <dd>{{ planta.especie.get('luz', '—') }}</dd>
-    <dt>Temperatura mínima</dt>
-    <dd>{{ planta.especie.get('temp_minima', '—') }} °C</dd>
+<div class="glass-card p-6 mb-6">
+  <h2 class="text-lg font-semibold text-green-800 mb-4">Informações</h2>
+  <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    {% if planta.especie %}
+    <div class="glass-card p-3">
+      <dt class="text-xs text-green-600 font-medium uppercase tracking-wide">Espécie</dt>
+      <dd class="text-green-900 font-medium mt-1">{{ planta.especie.get('nome_comum', '—') }} <em class="font-normal text-sm text-green-700">({{ planta.especie.get('nome_cientifico', '') }})</em></dd>
+    </div>
+    <div class="glass-card p-3">
+      <dt class="text-xs text-green-600 font-medium uppercase tracking-wide">Luz</dt>
+      <dd class="text-green-900 font-medium mt-1">{{ planta.especie.get('luz', '—') }}</dd>
+    </div>
+    <div class="glass-card p-3">
+      <dt class="text-xs text-green-600 font-medium uppercase tracking-wide">Temperatura mínima</dt>
+      <dd class="text-green-900 font-medium mt-1">{{ planta.especie.get('temp_minima', '—') }} °C</dd>
+    </div>
+    {% endif %}
+    <div class="glass-card p-3">
+      <dt class="text-xs text-green-600 font-medium uppercase tracking-wide">Frequência de rega</dt>
+      <dd class="text-green-900 font-medium mt-1">A cada {{ planta.frequencia_rega }} dia(s)</dd>
+    </div>
+    <div class="glass-card p-3">
+      <dt class="text-xs text-green-600 font-medium uppercase tracking-wide">Dias sem cuidado</dt>
+      {% set dias = planta.dias_sem_cuidado() %}
+      <dd class="text-green-900 font-medium mt-1">{{ dias if dias is not none else 'Nenhum registro ainda' }}</dd>
+    </div>
   </dl>
-  {% endif %}
+</div>
 
-  <dl>
-    <dt>Frequência de rega</dt>
-    <dd>A cada {{ planta.frequencia_rega }} dia(s)</dd>
-    <dt>Dias sem cuidado</dt>
-    {% set dias = planta.dias_sem_cuidado() %}
-    <dd>{{ dias if dias is not none else 'Nenhum registro ainda' }}</dd>
-    <dt>Status</dt>
-    <dd>
-      {% if planta.precisa_cuidado() %}
-        <span class="badge status-alerta">Precisa de Cuidado</span>
-      {% else %}
-        <span class="badge status-ok">OK</span>
-      {% endif %}
-    </dd>
-  </dl>
-</section>
-
-<section class="historico">
-  <h2>Histórico de Cuidados</h2>
+<div class="glass-card p-6 mb-6">
+  <h2 class="text-lg font-semibold text-green-800 mb-4">📋 Histórico de Cuidados</h2>
   {% set historico = historico if historico is defined else planta.historico_cuidados|sort(attribute='data', reverse=True) %}
   {% if historico %}
-  <table>
-    <thead>
-      <tr><th>Tipo</th><th>Data</th><th>Observação</th></tr>
-    </thead>
-    <tbody>
-      {% for cuidado in historico %}
-      <tr>
-        <td class="tipo-{{ cuidado.tipo }}">{{ cuidado.tipo|capitalize }}</td>
-        <td>{{ cuidado.data.strftime('%d/%m/%Y') }}</td>
-        <td>{{ cuidado.observacao or '—' }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="flex flex-col gap-2">
+    {% for cuidado in historico %}
+    <div class="glass-card p-3 flex items-center justify-between flex-wrap gap-2">
+      <span class="font-semibold text-green-900">{{ cuidado.tipo|capitalize }}</span>
+      <span class="text-green-700 text-sm">{{ cuidado.data.strftime('%d/%m/%Y') }}</span>
+      <span class="text-green-600 text-sm">{{ cuidado.observacao or '—' }}</span>
+    </div>
+    {% endfor %}
+  </div>
   {% else %}
-  <p class="vazio">Nenhum cuidado registrado ainda.</p>
+  <p class="text-green-700 text-center py-4">Nenhum cuidado registrado ainda.</p>
   {% endif %}
-</section>
+</div>
 
 {% if planta.log_edicoes %}
-<section class="log-edicoes">
-  <h2>Log de Edições</h2>
-  <ul>
+<div class="glass-card p-6">
+  <h2 class="text-lg font-semibold text-green-800 mb-4">📝 Log de Edições</h2>
+  <ul class="flex flex-col gap-2">
     {% for entrada in planta.log_edicoes|reverse %}
-    <li>
+    <li class="glass-card p-3 text-sm text-green-800">
       <strong>{{ entrada.data }}</strong> —
       {% for alt in entrada.alteracoes %}{{ alt }}{% if not loop.last %}; {% endif %}{% endfor %}
     </li>
     {% endfor %}
   </ul>
-</section>
+</div>
 {% endif %}
 {% endblock %}

@@ -2,17 +2,30 @@
 {% block titulo %}Login — Monitor de Plantas{% endblock %}
 
 {% block conteudo %}
-<div class="form-container">
-  <h1>Entrar</h1>
-  <form method="POST" action="{{ url_for('colaborador.login') }}">
-    <label for="email">E-mail</label>
-    <input type="email" id="email" name="email" required autofocus>
+<div class="max-w-sm mx-auto mt-20 glass-card p-8">
+  <div class="text-center mb-6">
+    <div class="text-4xl mb-2">🌿</div>
+    <h1 class="text-2xl font-bold text-green-900">Entrar</h1>
+    <p class="text-green-700 text-sm mt-1">Acesse seu Monitor de Plantas</p>
+  </div>
 
-    <label for="senha">Senha</label>
-    <input type="password" id="senha" name="senha" required>
+  <form method="POST" action="{{ url_for('colaborador.login') }}" class="flex flex-col gap-4">
+    <div>
+      <label for="email" class="block text-sm font-medium text-green-800 mb-1">E-mail</label>
+      <input type="email" id="email" name="email" required autofocus class="glass-input">
+    </div>
 
-    <button type="submit">Entrar</button>
+    <div>
+      <label for="senha" class="block text-sm font-medium text-green-800 mb-1">Senha</label>
+      <input type="password" id="senha" name="senha" required class="glass-input">
+    </div>
+
+    <button type="submit" class="glass-btn-primary text-center mt-2">Entrar</button>
   </form>
-  <p>Não tem conta? <a href="{{ url_for('colaborador.cadastro') }}">Cadastre-se</a></p>
+
+  <p class="text-center text-sm text-green-700 mt-5">
+    Não tem conta?
+    <a href="{{ url_for('colaborador.cadastro') }}" class="text-green-900 font-semibold hover:underline">Cadastre-se</a>
+  </p>
 </div>
 {% endblock %}

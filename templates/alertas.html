@@ -2,37 +2,43 @@
 {% block titulo %}Painel de Alertas{% endblock %}
 
 {% block conteudo %}
-<div class="page-header">
-  <h1>Painel de Alertas</h1>
-  <a href="{{ url_for('planta.listar') }}">← Minhas Plantas</a>
+<div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+  <h1 class="text-2xl font-bold text-green-900">⚠️ Painel de Alertas</h1>
+  <a href="{{ url_for('planta.listar') }}" class="glass-btn-secondary">← Minhas Plantas</a>
 </div>
 
 {% if alertas %}
-<ul class="lista-alertas">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
   {% for alerta in alertas %}
-  <li class="card-alerta">
-    <div class="alerta-info">
-      <strong>{{ alerta.nome_planta }}</strong>
-      {% if alerta.dias_sem_cuidado is not none %}
-        <span>{{ alerta.dias_sem_cuidado }} dia(s) sem cuidado</span>
-        {% if alerta.dias_atraso %}
-          <span class="atraso">{{ alerta.dias_atraso }} dia(s) em atraso</span>
+  <div class="glass-card p-4 border border-amber-300 flex flex-col gap-3">
+    <div>
+      <h2 class="font-bold text-green-900 text-lg">{{ alerta.nome_planta }}</h2>
+      <div class="flex flex-col gap-1 mt-2 text-sm text-green-800">
+        {% if alerta.dias_sem_cuidado is not none %}
+          <span>🕐 {{ alerta.dias_sem_cuidado }} dia(s) sem cuidado</span>
+          {% if alerta.dias_atraso %}
+            <span class="status-alerta">{{ alerta.dias_atraso }} dia(s) em atraso</span>
+          {% endif %}
+        {% else %}
+          <span class="text-amber-700">⚠ Nunca recebeu cuidado</span>
         {% endif %}
-      {% else %}
-        <span>Nunca recebeu cuidado</span>
-      {% endif %}
-      <span>Rega recomendada a cada {{ alerta.frequencia_rega }} dia(s)</span>
+        <span>💧 Rega recomendada a cada {{ alerta.frequencia_rega }} dia(s)</span>
+      </div>
     </div>
-    <div class="alerta-acoes">
+
+    <div class="flex gap-2 flex-wrap pt-2 border-t border-white/30">
       <form method="POST" action="{{ url_for('alerta.rega_rapida', planta_id=alerta.planta_id) }}">
-        <button type="submit" class="btn btn-alerta">💧 Regar agora</button>
+        <button type="submit" class="glass-btn-primary text-sm">💧 Regar agora</button>
       </form>
-      <a href="{{ url_for('registro.novo', planta_id=alerta.planta_id) }}">Outro cuidado</a>
+      <a href="{{ url_for('registro.novo', planta_id=alerta.planta_id) }}" class="glass-btn-secondary text-sm">Outro cuidado</a>
     </div>
-  </li>
+  </div>
   {% endfor %}
-</ul>
+</div>
 {% else %}
-<p class="vazio status-ok">Todas as plantas estão em dia! 🌱</p>
+<div class="glass-card p-10 text-center">
+  <div class="text-5xl mb-4">🌱</div>
+  <p class="status-ok text-base px-6 py-3">Todas as plantas estão em dia!</p>
+</div>
 {% endif %}
 {% endblock %}
