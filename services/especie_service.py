@@ -7,6 +7,7 @@ resultados obtidos para uso futuro.
 
 import json
 import os
+import unicodedata
 from typing import List, Optional
 
 import requests
@@ -227,14 +228,25 @@ def obter_especie(id: str) -> Optional[dict]:
 # Fallback local
 # ---------------------------------------------------------------------------
 
+def _normalizar_texto(texto: str) -> str:
+    """Remove acentos e converte para minúsculas para comparação."""
+    return unicodedata.normalize("NFD", texto).encode("ascii", "ignore").decode("ascii").lower()
+
+
 def _buscar_fallback(query: str) -> List[dict]:
-    """Filtra o catálogo local pelo termo de busca (case-insensitive)."""
-    termo = query.lower()
-    return [
-        esp
-        for esp in _FALLBACK_ESPECIES
-        if termo in esp["nome_comum"].lower() or termo in esp["nome_cientifico"].lower()
-    ] or _FALLBACK_ESPECIES
+    """Filtra o catálogo local pelo termo de busca.
+
+    Suporta busca parcial por palavras, sem distinção de maiúsculas/minúsculas
+    e sem distinção de acentos. Cada palavra do termo deve aparecer em algum
+    campo do nome da espécie.
+    """
+    palavras = _normalizar_texto(query).split()
+    resultados = []
+    for esp in _FALLBACK_ESPECIES:
+        campo = _normalizar_texto(esp["nome_comum"]) + " " + _normalizar_texto(esp["nome_cientifico"])
+        if all(p in campo for p in palavras):
+            resultados.append(esp)
+    return resultados
 
 
 def _buscar_fallback_por_id(id: str) -> Optional[dict]:
