@@ -70,5 +70,77 @@
       }
     ],
     "log_edicoes": []
+  },
+  {
+    "id": "72a81c26-5029-4f55-bd3b-424ddf119847",
+    "nome": "Samambaia Editada",
+    "especie": {
+      "id": "local-1",
+      "nome_comum": "Samambaia",
+      "nome_cientifico": "Nephrolepis exaltata",
+      "frequencia_rega": 3
+    },
+    "frequencia_rega": 3,
+    "colaborador_id": "59990278-8372-4446-9c20-1920c5b0c4ac",
+    "historico_cuidados": [
+      {
+        "id": "86f8652c-e722-49c6-ad21-97db2ad54ca7",
+        "tipo": "rega",
+        "data": "2026-06-16",
+        "observacao": ""
+      },
+      {
+        "id": "08592142-21e2-4d9b-ab68-b178558ff1d1",
+        "tipo": "rega",
+        "data": "2026-06-12",
+        "observacao": ""
+      }
+    ],
+    "log_edicoes": [
+      {
+        "data": "2026-06-17",
+        "colaborador_id": "59990278-8372-4446-9c20-1920c5b0c4ac",
+        "alteracoes": [
+          "nome: 'Minha Samambaia' → 'Samambaia Editada'"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "f0d627c6-1558-4bf6-9998-8dd7efb7c88f",
+    "nome": "Cacto Velho",
+    "especie": {},
+    "frequencia_rega": 7,
+    "colaborador_id": "59990278-8372-4446-9c20-1920c5b0c4ac",
+    "historico_cuidados": [
+      {
+        "id": "b7b779d2-4afc-42b8-ac38-5e4420204938",
+        "tipo": "rega",
+        "data": "2026-06-07",
+        "observacao": ""
+      }
+    ],
+    "log_edicoes": []
+  },
+  {
+    "id": "9addbb3e-93b1-4324-b483-fc4769ab1b4e",
+    "nome": "Orquídea do Bruno",
+    "especie": {
+      "id": "local-4",
+      "nome_comum": "Orquídea",
+      "nome_cientifico": "Phalaenopsis sp.",
+      "frequencia_rega": 7
+    },
+    "frequencia_rega": 7,
+    "colaborador_id": "58aa5aff-e57e-4f3c-b34b-9446a4c2a5c7",
+    "historico_cuidados": [
+      {
+        "id": "a203a83a-b428-451d-abcb-6ac6962a6784",
+        "tipo": "rega",
+        "data": "2026-06-17",
+        "observacao": "Rega rápida via painel de alertas."
+      }
+    ],
+    "log_edicoes": []
   }
 ]
