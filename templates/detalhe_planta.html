@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block titulo %}{{ planta.nome }} — Detalhes{% endblock %}
+
+{% block conteudo %}
+<div class="page-header">
+  <h1>{{ planta.nome }}</h1>
+  <div class="acoes">
+    <a href="{{ url_for('registro.novo', planta_id=planta.id) }}" class="btn">+ Registrar Cuidado</a>
+    <a href="{{ url_for('planta.editar', planta_id=planta.id) }}" class="btn btn-secundario">Editar</a>
+    <a href="{{ url_for('planta.listar') }}">← Voltar</a>
+  </div>
+</div>
+
+<section class="detalhes-info">
+  {% if planta.especie %}
+  <dl>
+    <dt>Espécie</dt>
+    <dd>{{ planta.especie.get('nome_comum', '—') }} <em>({{ planta.especie.get('nome_cientifico', '') }})</em></dd>
+    <dt>Luz</dt>
+    <dd>{{ planta.especie.get('luz', '—') }}</dd>
+    <dt>Temperatura mínima</dt>
+    <dd>{{ planta.especie.get('temp_minima', '—') }} °C</dd>
+  </dl>
+  {% endif %}
+
+  <dl>
+    <dt>Frequência de rega</dt>
+    <dd>A cada {{ planta.frequencia_rega }} dia(s)</dd>
+    <dt>Dias sem cuidado</dt>
+    {% set dias = planta.dias_sem_cuidado() %}
+    <dd>{{ dias if dias is not none else 'Nenhum registro ainda' }}</dd>
+    <dt>Status</dt>
+    <dd>
+      {% if planta.precisa_cuidado() %}
+        <span class="badge status-alerta">Precisa de Cuidado</span>
+      {% else %}
+        <span class="badge status-ok">OK</span>
+      {% endif %}
+    </dd>
+  </dl>
+</section>
+
+<section class="historico">
+  <h2>Histórico de Cuidados</h2>
+  {% set historico = historico if historico is defined else planta.historico_cuidados|sort(attribute='data', reverse=True) %}
+  {% if historico %}
+  <table>
+    <thead>
+      <tr><th>Tipo</th><th>Data</th><th>Observação</th></tr>
+    </thead>
+    <tbody>
+      {% for cuidado in historico %}
+      <tr>
+        <td class="tipo-{{ cuidado.tipo }}">{{ cuidado.tipo|capitalize }}</td>
+        <td>{{ cuidado.data.strftime('%d/%m/%Y') }}</td>
+        <td>{{ cuidado.observacao or '—' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="vazio">Nenhum cuidado registrado ainda.</p>
+  {% endif %}
+</section>
+
+{% if planta.log_edicoes %}
+<section class="log-edicoes">
+  <h2>Log de Edições</h2>
+  <ul>
+    {% for entrada in planta.log_edicoes|reverse %}
+    <li>
+      <strong>{{ entrada.data }}</strong> —
+      {% for alt in entrada.alteracoes %}{{ alt }}{% if not loop.last %}; {% endif %}{% endfor %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

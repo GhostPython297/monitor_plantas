@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block titulo %}Meu Perfil{% endblock %}
+
+{% block conteudo %}
+<div class="page-header">
+  <h1>Meu Perfil</h1>
+  <a href="{{ url_for('planta.listar') }}">← Minhas Plantas</a>
+</div>
+
+<form method="POST" action="{{ url_for('colaborador.perfil') }}" class="form-container">
+  <p class="aviso">Para salvar qualquer alteração, confirme sua senha atual.</p>
+
+  <label for="nome">Nome completo</label>
+  <input type="text" id="nome" name="nome" value="{{ colaborador.nome }}" required>
+
+  <label for="email">E-mail</label>
+  <input type="email" id="email" name="email" value="{{ colaborador.email }}" required>
+
+  <fieldset>
+    <legend>Alterar senha <em>(deixe em branco para manter a atual)</em></legend>
+    <label for="nova_senha">Nova senha</label>
+    <input type="password" id="nova_senha" name="nova_senha" minlength="6"
+           placeholder="Mínimo 6 caracteres">
+  </fieldset>
+
+  <label for="senha_atual">Senha atual <strong>(obrigatória para confirmar)</strong></label>
+  <input type="password" id="senha_atual" name="senha_atual" required>
+
+  <button type="submit">Salvar alterações</button>
+</form>
+
+<hr>
+
+<div class="zona-perigo">
+  <h2>Zona de perigo</h2>
+  <p>A exclusão da conta é permanente e remove também todas as suas plantas.</p>
+  <a href="{{ url_for('colaborador.excluir') }}" class="btn btn-perigo">Excluir minha conta</a>
+</div>
+{% endblock %}

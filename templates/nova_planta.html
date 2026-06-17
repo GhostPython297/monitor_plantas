@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block titulo %}Nova Planta{% endblock %}
+
+{% block conteudo %}
+<h1>Cadastrar Nova Planta</h1>
+
+<section class="busca-especie">
+  <h2>1. Buscar espécie (opcional)</h2>
+  <form method="POST" action="{{ url_for('planta.nova') }}">
+    <input type="hidden" name="acao" value="buscar">
+    <div class="busca-linha">
+      <input type="text" name="query" value="{{ query|default('') }}" placeholder="Ex: samambaia, cacto...">
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
+
+  {% if resultados %}
+  <ul class="lista-especies">
+    {% for esp in resultados %}
+    <li>
+      <form method="POST" action="{{ url_for('planta.nova') }}">
+        <input type="hidden" name="acao" value="selecionar">
+        <input type="hidden" name="especie_id" value="{{ esp.id }}">
+        <span><strong>{{ esp.nome_comum }}</strong> — <em>{{ esp.nome_cientifico }}</em> (rega a cada {{ esp.frequencia_rega }} dias)</span>
+        <button type="submit">Selecionar</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+<section class="form-planta">
+  <h2>2. Dados da planta</h2>
+  <form method="POST" action="{{ url_for('planta.nova') }}">
+    <input type="hidden" name="acao" value="salvar">
+
+    {% if especie_selecionada %}
+    <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
+    <div class="especie-selecionada">
+      <strong>Espécie:</strong> {{ especie_selecionada.nome_comum }}
+      ({{ especie_selecionada.nome_cientifico }})
+    </div>
+    {% endif %}
+
+    <label for="nome">Nome da planta</label>
+    <input type="text" id="nome" name="nome" required placeholder="Ex: Samambaia do escritório">
+
+    <label for="frequencia_rega">Frequência de rega (dias)</label>
+    <input type="number" id="frequencia_rega" name="frequencia_rega" min="1" max="365"
+           value="{{ especie_selecionada.frequencia_rega if especie_selecionada else 7 }}" required>
+
+    <button type="submit">Salvar Planta</button>
+    <a href="{{ url_for('planta.listar') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

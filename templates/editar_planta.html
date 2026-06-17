@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}Editar — {{ planta.nome }}{% endblock %}
+
+{% block conteudo %}
+<h1>Editar: {{ planta.nome }}</h1>
+
+<form method="POST" action="{{ url_for('planta.editar', planta_id=planta.id) }}">
+  <label for="nome">Nome da planta</label>
+  <input type="text" id="nome" name="nome" value="{{ planta.nome }}" required>
+
+  <label for="frequencia_rega">Frequência de rega (dias)</label>
+  <input type="number" id="frequencia_rega" name="frequencia_rega"
+         value="{{ planta.frequencia_rega }}" min="1" max="365" required>
+
+  {% if planta.especie %}
+  <div class="info-readonly">
+    <strong>Espécie:</strong> {{ planta.especie.get('nome_comum', '—') }}
+    <em>(a espécie não pode ser alterada após o cadastro)</em>
+  </div>
+  {% endif %}
+
+  <button type="submit">Salvar alterações</button>
+  <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}">Cancelar</a>
+</form>
+{% endblock %}
