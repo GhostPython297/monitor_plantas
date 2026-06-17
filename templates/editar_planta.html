@@ -8,25 +8,92 @@
     <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}" class="glass-btn-secondary">← Voltar</a>
   </div>
 
+  <div class="glass-card p-6 mb-4">
+    <h2 class="text-lg font-semibold text-green-800 mb-4">Alterar espécie <span class="text-sm font-normal text-green-600">(opcional)</span></h2>
+
+    {% set especie_atual = especie_selecionada if especie_selecionada else planta.especie %}
+    {% if especie_atual %}
+    <div class="flex items-center gap-3 mb-4 p-3 glass-card">
+      {% if especie_atual.get('imagem_url') %}
+      <img src="{{ especie_atual.get('imagem_url') }}" alt="{{ especie_atual.get('nome_comum', '') }}"
+           class="w-14 h-14 rounded-xl object-cover flex-shrink-0 border border-green-200">
+      {% else %}
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center bg-green-100 flex-shrink-0 text-3xl">🌿</div>
+      {% endif %}
+      <div>
+        <p class="text-green-700 text-xs font-medium">
+          {% if especie_selecionada %}✅ Nova espécie selecionada{% else %}🌿 Espécie atual{% endif %}
+        </p>
+        <p class="text-green-900 font-bold">{{ especie_atual.get('nome_comum', '—') }}</p>
+        <p class="text-green-600 text-xs italic">{{ especie_atual.get('nome_cientifico', '') }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('planta.editar', planta_id=planta.id) }}">
+      <input type="hidden" name="acao" value="buscar_especie">
+      <div class="flex gap-2">
+        <input type="text" name="query" value="{{ query|default('') }}" placeholder="Ex: samambaia, cacto..." class="glass-input">
+        <button type="submit" class="glass-btn-secondary whitespace-nowrap">Buscar</button>
+      </div>
+    </form>
+
+    {% if query is defined and query != None %}
+      {% if resultados %}
+      <div class="mt-3 rounded-xl border border-green-200 bg-white/60 backdrop-blur shadow-lg overflow-hidden">
+        <p class="text-xs text-green-700 px-3 pt-2 pb-1 font-medium border-b border-green-100">{{ resultados|length }} resultado(s) — selecione para trocar a espécie:</p>
+        <ul class="divide-y divide-green-100 max-h-80 overflow-y-auto">
+          {% for esp in resultados %}
+          <li>
+            <form method="POST" action="{{ url_for('planta.editar', planta_id=planta.id) }}">
+              <input type="hidden" name="acao" value="selecionar_especie">
+              <input type="hidden" name="especie_id" value="{{ esp.id }}">
+              <button type="submit" class="w-full text-left flex items-center gap-3 px-3 py-2 hover:bg-green-50 transition-colors">
+                {% if esp.imagem_url %}
+                <img src="{{ esp.imagem_url }}" alt="{{ esp.nome_comum }}"
+                     class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-green-100">
+                {% else %}
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-green-100 flex-shrink-0 text-2xl">🌿</div>
+                {% endif %}
+                <div class="flex-1 min-w-0">
+                  <p class="text-green-900 font-semibold text-sm truncate">{{ esp.nome_comum }}</p>
+                  <p class="text-green-600 text-xs italic truncate">{{ esp.nome_cientifico }}</p>
+                  <p class="text-green-500 text-xs">💧 Rega a cada {{ esp.frequencia_rega }} dias</p>
+                </div>
+                <span class="text-green-400 text-xs flex-shrink-0">Selecionar →</span>
+              </button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <div class="mt-3 rounded-xl border border-amber-200 bg-amber-50/60 px-4 py-3 flex items-center gap-2 text-amber-800 text-sm">
+        <span class="text-xl">🔍</span>
+        Nenhuma espécie encontrada para <strong class="mx-1">"{{ query }}"</strong>. Tente outro nome.
+      </div>
+      {% endif %}
+    {% endif %}
+  </div>
+
   <div class="glass-card p-6">
+    <h2 class="text-lg font-semibold text-green-800 mb-4">Dados da planta</h2>
     <form method="POST" action="{{ url_for('planta.editar', planta_id=planta.id) }}" class="flex flex-col gap-4">
+      <input type="hidden" name="acao" value="salvar">
+      {% if especie_selecionada %}
+      <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
+      {% endif %}
+
       <div>
         <label for="nome" class="block text-sm font-medium text-green-800 mb-1">Nome da planta</label>
-        <input type="text" id="nome" name="nome" value="{{ planta.nome }}" required class="glass-input">
+        <input type="text" id="nome" name="nome" value="{{ nome_atual|default(planta.nome) }}" required class="glass-input">
       </div>
 
       <div>
         <label for="frequencia_rega" class="block text-sm font-medium text-green-800 mb-1">Frequência de rega (dias)</label>
         <input type="number" id="frequencia_rega" name="frequencia_rega"
-               value="{{ planta.frequencia_rega }}" min="1" max="365" required class="glass-input">
+               value="{{ freq_atual|default(planta.frequencia_rega) }}" min="1" max="365" required class="glass-input">
       </div>
-
-      {% if planta.especie %}
-      <div class="glass-card p-3 text-green-700 text-sm">
-        🌿 <strong>Espécie:</strong> {{ planta.especie.get('nome_comum', '—') }}
-        <span class="text-green-500 italic ml-1">(a espécie não pode ser alterada após o cadastro)</span>
-      </div>
-      {% endif %}
 
       <div class="flex gap-3 flex-wrap pt-2">
         <button type="submit" class="glass-btn-primary">Salvar alterações</button>

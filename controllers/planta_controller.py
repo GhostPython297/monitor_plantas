@@ -116,8 +116,21 @@ def editar(planta_id):
         return redirect(url_for("planta.listar"))
 
     if request.method == "POST":
+        acao = request.form.get("acao", "salvar")
+
+        if acao == "buscar_especie":
+            query = request.form.get("query", "").strip()
+            resultados = buscar_especies(query) if query else []
+            return render_template("editar_planta.html", planta=planta, resultados=resultados, query=query)
+
+        if acao == "selecionar_especie":
+            especie_id = request.form.get("especie_id", "")
+            especie_selecionada = obter_especie(especie_id)
+            return render_template("editar_planta.html", planta=planta, especie_selecionada=especie_selecionada)
+
         novo_nome = request.form.get("nome", "").strip()
         frequencia_raw = request.form.get("frequencia_rega", "").strip()
+        especie_id = request.form.get("especie_id", "")
 
         if not novo_nome:
             flash("O nome da planta é obrigatório.", "erro")
@@ -136,6 +149,14 @@ def editar(planta_id):
                 planta.frequencia_rega = nova_freq
         except ValueError:
             pass
+
+        if especie_id:
+            nova_especie = obter_especie(especie_id)
+            if nova_especie and nova_especie != planta.especie:
+                alteracoes.append(
+                    f"especie: '{planta.especie.get('nome_comum', '—')}' → '{nova_especie.get('nome_comum', '—')}'"
+                )
+                planta.especie = nova_especie
 
         if alteracoes:
             planta.log_edicoes.append({
