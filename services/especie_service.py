@@ -1,5 +1,11 @@
-"""Módulo de integração com a API externa de espécies de plantas (Perenual)."""
+"""Módulo de integração com a API externa de espécies de plantas (Perenual).
 
+Utiliza um cache em JSON (data/especies_cache.json) para minimizar chamadas à
+API gratuita. Consulta o cache antes de qualquer requisição e persiste os
+resultados obtidos para uso futuro.
+"""
+
+import json
 import os
 from typing import List, Optional
 
@@ -7,6 +13,8 @@ import requests
 
 _BASE_URL = "https://perenual.com/api"
 _API_KEY = os.environ.get("PERENUAL_API_KEY", "")
+
+_CACHE_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "especies_cache.json")
 
 _MAPA_FREQUENCIA_REGA = {
     "frequent": 2,
@@ -59,27 +67,39 @@ _FALLBACK_ESPECIES = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# Cache helpers
+# ---------------------------------------------------------------------------
+
+def _carregar_cache() -> dict:
+    """Carrega o cache do disco. Retorna estrutura vazia se não existir."""
+    try:
+        with open(_CACHE_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {"especies": {}, "buscas": {}}
+
+
+def _salvar_cache(cache: dict) -> None:
+    """Persiste o cache no disco."""
+    os.makedirs(os.path.dirname(_CACHE_PATH), exist_ok=True)
+    with open(_CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+
+
+# ---------------------------------------------------------------------------
+# Normalização e utilitários
+# ---------------------------------------------------------------------------
+
 def _frequencia_em_dias(watering: str) -> int:
-    """Converte o campo textual de rega da API para um intervalo em dias.
-
-    Args:
-        watering: Valor textual da API (ex: ``"Frequent"``, ``"Average"``).
-
-    Returns:
-        Número de dias sugerido para o intervalo de rega.
-    """
+    """Converte o campo textual de rega da API para um intervalo em dias."""
+    if not watering:
+        return 7
     return _MAPA_FREQUENCIA_REGA.get(watering.lower(), 7)
 
 
 def _normalizar_especie(item: dict) -> dict:
-    """Converte um item da resposta da API Perenual para o formato interno.
-
-    Args:
-        item: Dicionário retornado pela API Perenual.
-
-    Returns:
-        Dicionário padronizado com as chaves usadas pela aplicação.
-    """
+    """Converte um item da resposta da API Perenual para o formato interno."""
     nomes_cientificos = item.get("scientific_name", [])
     nome_cientifico = nomes_cientificos[0] if nomes_cientificos else ""
 
@@ -107,28 +127,32 @@ def _normalizar_especie(item: dict) -> dict:
 
 
 def _api_disponivel() -> bool:
-    """Verifica se a chave de API está configurada.
-
-    Returns:
-        True se a variável de ambiente ``PERENUAL_API_KEY`` estiver definida.
-    """
+    """Verifica se a chave de API está configurada."""
     return bool(_API_KEY)
 
+
+# ---------------------------------------------------------------------------
+# API pública
+# ---------------------------------------------------------------------------
 
 def buscar_especies(query: str) -> List[dict]:
     """Busca espécies de plantas pelo nome informado.
 
-    Consulta a API Perenual quando a chave estiver disponível. Em caso de
-    ausência da chave ou falha na requisição, retorna o catálogo local de
-    fallback filtrado pelo termo buscado.
+    Consulta o cache local antes de chamar a API. Salva os resultados obtidos
+    da API no cache para evitar chamadas repetidas.
 
     Args:
         query: Termo de busca (nome comum ou científico da espécie).
 
     Returns:
-        Lista de dicionários com as chaves ``id``, ``nome_comum``,
-        ``nome_cientifico``, ``frequencia_rega``, ``luz`` e ``temp_minima``.
+        Lista de dicionários com os dados das espécies encontradas.
     """
+    chave = query.lower().strip()
+
+    cache = _carregar_cache()
+    if chave in cache.get("buscas", {}):
+        return cache["buscas"][chave]
+
     if not _api_disponivel():
         return _buscar_fallback(query)
 
@@ -140,7 +164,14 @@ def buscar_especies(query: str) -> List[dict]:
         )
         resposta.raise_for_status()
         dados = resposta.json()
-        return [_normalizar_especie(item) for item in dados.get("data", [])]
+        resultados = [_normalizar_especie(item) for item in dados.get("data", [])]
+
+        cache.setdefault("buscas", {})[chave] = resultados
+        for esp in resultados:
+            cache.setdefault("especies", {})[esp["id"]] = esp
+        _salvar_cache(cache)
+
+        return resultados
     except requests.RequestException:
         return _buscar_fallback(query)
 
@@ -148,18 +179,20 @@ def buscar_especies(query: str) -> List[dict]:
 def obter_especie(id: str) -> Optional[dict]:
     """Retorna os detalhes completos de uma espécie pelo seu identificador.
 
-    Consulta a API Perenual quando a chave estiver disponível. Em caso de
-    ausência da chave, falha na requisição ou ID local (prefixo ``local-``),
-    tenta localizar a espécie no catálogo de fallback.
+    Consulta o cache local antes de chamar a API. Salva o resultado no cache.
 
     Args:
-        id: Identificador da espécie (numérico da API ou ``local-N`` do fallback).
+        id: Identificador da espécie (numérico da API ou ``local-N``).
 
     Returns:
         Dicionário com os dados da espécie, ou None se não encontrada.
     """
     if str(id).startswith("local-"):
         return _buscar_fallback_por_id(id)
+
+    cache = _carregar_cache()
+    if str(id) in cache.get("especies", {}):
+        return cache["especies"][str(id)]
 
     if not _api_disponivel():
         return _buscar_fallback_por_id(id)
@@ -171,20 +204,22 @@ def obter_especie(id: str) -> Optional[dict]:
             timeout=5,
         )
         resposta.raise_for_status()
-        return _normalizar_especie(resposta.json())
+        especie = _normalizar_especie(resposta.json())
+
+        cache.setdefault("especies", {})[str(id)] = especie
+        _salvar_cache(cache)
+
+        return especie
     except requests.RequestException:
         return _buscar_fallback_por_id(id)
 
 
+# ---------------------------------------------------------------------------
+# Fallback local
+# ---------------------------------------------------------------------------
+
 def _buscar_fallback(query: str) -> List[dict]:
-    """Filtra o catálogo local pelo termo de busca (case-insensitive).
-
-    Args:
-        query: Termo de busca.
-
-    Returns:
-        Lista de espécies do catálogo local que correspondem ao termo.
-    """
+    """Filtra o catálogo local pelo termo de busca (case-insensitive)."""
     termo = query.lower()
     return [
         esp
@@ -194,14 +229,7 @@ def _buscar_fallback(query: str) -> List[dict]:
 
 
 def _buscar_fallback_por_id(id: str) -> Optional[dict]:
-    """Localiza uma espécie no catálogo local pelo identificador.
-
-    Args:
-        id: Identificador da espécie no catálogo local (ex: ``local-1``).
-
-    Returns:
-        Dicionário com os dados da espécie, ou None se não encontrada.
-    """
+    """Localiza uma espécie no catálogo local pelo identificador."""
     for esp in _FALLBACK_ESPECIES:
         if esp["id"] == str(id):
             return esp
