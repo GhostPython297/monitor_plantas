@@ -14,19 +14,24 @@
     {% set especie_atual = especie_selecionada if especie_selecionada else planta.especie %}
     {% if especie_atual %}
     <div class="flex items-center gap-3 mb-4 p-3 glass-card">
-      {% if especie_atual.get('imagem_url') %}
-      <img src="{{ especie_atual.get('imagem_url') }}" alt="{{ especie_atual.get('nome_comum', '') }}"
+      {% if especie_atual.get('imagem') %}
+      <img src="{{ especie_atual.get('imagem') }}" alt="{{ especie_atual.get('nome_comum', '') }}"
            class="w-14 h-14 rounded-xl object-cover flex-shrink-0 border border-green-200">
       {% else %}
       <div class="w-14 h-14 rounded-xl flex items-center justify-center bg-green-100 flex-shrink-0 text-3xl">🌿</div>
       {% endif %}
-      <div>
+      <div class="flex-1 min-w-0">
         <p class="text-green-700 text-xs font-medium">
           {% if especie_selecionada %}✅ Nova espécie selecionada{% else %}🌿 Espécie atual{% endif %}
         </p>
         <p class="text-green-900 font-bold">{{ especie_atual.get('nome_comum', '—') }}</p>
         <p class="text-green-600 text-xs italic">{{ especie_atual.get('nome_cientifico', '') }}</p>
       </div>
+      {% if not especie_selecionada and planta.especie and not planta.especie.get('id', '').startswith('local-') %}
+      <form method="POST" action="{{ url_for('planta.atualizar_especie', planta_id=planta.id) }}" class="flex-shrink-0">
+        <button type="submit" class="glass-btn-secondary text-xs whitespace-nowrap" title="Re-busca os dados desta espécie na API">🔄 Atualizar</button>
+      </form>
+      {% endif %}
     </div>
     {% endif %}
 
@@ -49,8 +54,8 @@
               <input type="hidden" name="acao" value="selecionar_especie">
               <input type="hidden" name="especie_id" value="{{ esp.id }}">
               <button type="submit" class="w-full text-left flex items-center gap-3 px-3 py-2 hover:bg-green-50 transition-colors">
-                {% if esp.imagem_url %}
-                <img src="{{ esp.imagem_url }}" alt="{{ esp.nome_comum }}"
+                {% if esp.imagem %}
+                <img src="{{ esp.imagem }}" alt="{{ esp.nome_comum }}"
                      class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-green-100">
                 {% else %}
                 <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-green-100 flex-shrink-0 text-2xl">🌿</div>

@@ -136,6 +136,46 @@ def _normalizar_especie(item: dict) -> dict:
     }
 
 
+def atualizar_especie_cache(id: str) -> Optional[dict]:
+    """Remove a espécie do cache e a re-busca na API.
+
+    Útil para forçar a atualização de dados desatualizados (foto, nome, etc.).
+    Espécies locais (``local-N``) não são atualizáveis e retornam None.
+
+    Args:
+        id: Identificador da espécie (numérico da API).
+
+    Returns:
+        Dicionário atualizado da espécie, ou None se não for possível atualizar.
+    """
+    if str(id).startswith("local-"):
+        return None
+
+    if not _api_disponivel():
+        return None
+
+    cache = _carregar_cache()
+    cache.get("especies", {}).pop(str(id), None)
+    _salvar_cache(cache)
+
+    try:
+        resposta = requests.get(
+            f"{_BASE_URL}/species/details/{id}",
+            params={"key": _API_KEY},
+            timeout=5,
+        )
+        resposta.raise_for_status()
+        especie = _normalizar_especie(resposta.json())
+
+        cache = _carregar_cache()
+        cache.setdefault("especies", {})[str(id)] = especie
+        _salvar_cache(cache)
+
+        return especie
+    except requests.RequestException:
+        return None
+
+
 def _api_disponivel() -> bool:
     """Verifica se a chave de API está configurada."""
     return bool(_API_KEY)

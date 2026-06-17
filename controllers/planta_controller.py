@@ -14,7 +14,7 @@ from flask import (
 
 from controllers.colaborador_controller import login_required
 from models.planta import Planta
-from services.especie_service import buscar_especies, obter_especie
+from services.especie_service import atualizar_especie_cache, buscar_especies, obter_especie
 from services.repositorio import (
     adicionar_planta,
     atualizar_planta,
@@ -170,3 +170,32 @@ def editar(planta_id):
         return redirect(url_for("planta.detalhes", planta_id=planta.id))
 
     return render_template("editar_planta.html", planta=planta)
+
+
+@planta_bp.route("/<planta_id>/atualizar_especie", methods=["POST"])
+@login_required
+def atualizar_especie(planta_id):
+    """Force-refresh os dados da espécie da planta a partir da API."""
+    planta = buscar_planta_por_id(planta_id)
+    if not planta:
+        flash("Planta não encontrada.", "erro")
+        return redirect(url_for("planta.listar"))
+
+    if planta.colaborador_id != session["colaborador_id"]:
+        flash("Acesso negado.", "erro")
+        return redirect(url_for("planta.listar"))
+
+    especie_id = planta.especie.get("id") if planta.especie else None
+    if not especie_id:
+        flash("Esta planta não tem espécie vinculada.", "erro")
+        return redirect(url_for("planta.editar", planta_id=planta_id))
+
+    nova_especie = atualizar_especie_cache(especie_id)
+    if nova_especie is None:
+        flash("Não foi possível atualizar: espécie local ou API indisponível.", "erro")
+        return redirect(url_for("planta.editar", planta_id=planta_id))
+
+    planta.especie = nova_especie
+    atualizar_planta(planta)
+    flash("Dados da espécie atualizados com sucesso!", "sucesso")
+    return redirect(url_for("planta.editar", planta_id=planta_id))
