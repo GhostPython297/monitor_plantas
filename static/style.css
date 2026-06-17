@@ -1,0 +1,752 @@
+/* ===========================
+   Monitor de Plantas — CSS
+   =========================== */
+
+/* Reset e base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f7f5;
+  min-height: 100vh;
+}
+
+a {
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Navbar
+   =========================== */
+
+nav {
+  background: #1b5e20;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-logo:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #c8e6c9;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-user {
+  color: #a5d6a7 !important;
+  font-size: 0.9rem !important;
+}
+
+.nav-sair {
+  border: 1px solid #4caf50;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.nav-sair:hover {
+  background: #4caf50;
+  color: #fff !important;
+}
+
+/* Badge de alertas na navbar (RNF15) */
+.nav-alertas {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge-alerta {
+  background: #f44336;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+/* ===========================
+   Main / Layout
+   =========================== */
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* ===========================
+   Flash messages
+   =========================== */
+
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.flash-sucesso {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.flash-erro {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.flash-aviso {
+  background: #fff8e1;
+  color: #e65100;
+  border: 1px solid #ffcc80;
+}
+
+/* ===========================
+   Page header
+   =========================== */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  color: #1b5e20;
+}
+
+.page-header .acoes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+
+.btn,
+button[type="submit"] {
+  display: inline-block;
+  background: #2e7d32;
+  color: #fff;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.btn:hover,
+button[type="submit"]:hover {
+  background: #1b5e20;
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-secundario {
+  background: #fff;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+
+.btn-secundario:hover {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.btn-alerta {
+  background: #e53935;
+}
+
+.btn-alerta:hover {
+  background: #b71c1c;
+}
+
+.btn-perigo {
+  background: #fff;
+  color: #c62828;
+  border: 1px solid #c62828;
+}
+
+.btn-perigo:hover {
+  background: #ffebee;
+}
+
+/* ===========================
+   Badges de status (RNF14)
+   =========================== */
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-ok {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.status-alerta {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+/* ===========================
+   Lista de plantas
+   =========================== */
+
+.lista-plantas {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-planta {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: box-shadow 0.15s;
+}
+
+.card-planta:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-info {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.card-info strong {
+  font-size: 1.05rem;
+  color: #1b5e20;
+}
+
+.especie {
+  font-size: 0.85rem;
+  color: #555;
+  font-style: italic;
+}
+
+.freq, .dias {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+}
+
+.card-acoes {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card-acoes a {
+  font-size: 0.88rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  white-space: nowrap;
+}
+
+.card-acoes a:hover {
+  background: #f5f5f5;
+  text-decoration: none;
+}
+
+/* ===========================
+   Alertas
+   =========================== */
+
+.lista-alertas {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-alerta {
+  background: #fff;
+  border: 1px solid #ef9a9a;
+  border-left: 4px solid #e53935;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.alerta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.alerta-info strong {
+  font-size: 1.05rem;
+  color: #c62828;
+}
+
+.alerta-info span {
+  font-size: 0.88rem;
+  color: #555;
+}
+
+.atraso {
+  color: #e53935 !important;
+  font-weight: 600 !important;
+}
+
+.alerta-acoes {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.alerta-acoes a {
+  font-size: 0.88rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+}
+
+.alerta-acoes a:hover {
+  background: #f5f5f5;
+  text-decoration: none;
+}
+
+/* ===========================
+   Formulários
+   =========================== */
+
+.form-container {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-container h1 {
+  font-size: 1.4rem;
+  color: #1b5e20;
+  margin-bottom: 0.25rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fafafa;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+legend {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #555;
+  padding: 0 0.4rem;
+}
+
+.form-acoes {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.aviso {
+  font-size: 0.88rem;
+  color: #555;
+  background: #fff8e1;
+  border: 1px solid #ffcc80;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+/* ===========================
+   Seção de detalhes da planta
+   =========================== */
+
+.detalhes-info {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.25rem;
+  align-items: baseline;
+}
+
+dt {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #555;
+}
+
+dd {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+}
+
+/* ===========================
+   Histórico / tabela
+   =========================== */
+
+.historico,
+.log-edicoes {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.historico h2,
+.log-edicoes h2 {
+  font-size: 1.1rem;
+  color: #1b5e20;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+thead th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #555;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+tbody td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tipo-rega   { color: #1565c0; font-weight: 600; }
+.tipo-adubacao { color: #6a1f9a; font-weight: 600; }
+.tipo-poda   { color: #bf360c; font-weight: 600; }
+
+/* ===========================
+   Log de edições
+   =========================== */
+
+.log-edicoes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.log-edicoes li {
+  font-size: 0.88rem;
+  color: #555;
+  padding: 0.3rem 0.5rem;
+  background: #fafafa;
+  border-radius: 4px;
+}
+
+/* ===========================
+   Busca de espécies
+   =========================== */
+
+.busca-especie,
+.form-planta {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.busca-especie h2,
+.form-planta h2 {
+  font-size: 1rem;
+  color: #1b5e20;
+  margin-bottom: 0.75rem;
+}
+
+.busca-linha {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.busca-linha input {
+  flex: 1;
+}
+
+.lista-especies {
+  list-style: none;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lista-especies li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #fafafa;
+}
+
+.especie-selecionada {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+}
+
+/* ===========================
+   Info readonly
+   =========================== */
+
+.info-readonly {
+  font-size: 0.88rem;
+  color: #555;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.info-readonly em {
+  color: #888;
+}
+
+/* ===========================
+   Zona de perigo
+   =========================== */
+
+.zona-perigo {
+  border: 1px solid #ef9a9a;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  background: #fff;
+}
+
+.zona-perigo h2 {
+  font-size: 1rem;
+  color: #c62828;
+  margin-bottom: 0.5rem;
+}
+
+.zona-perigo p {
+  font-size: 0.88rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+/* ===========================
+   Estado vazio
+   =========================== */
+
+.vazio {
+  color: #666;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.vazio.status-ok {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* ===========================
+   Separador
+   =========================== */
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1.5rem 0;
+}
+
+/* ===========================
+   Responsivo
+   =========================== */
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    gap: 0.75rem;
+  }
+
+  .card-planta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+  }
+
+  dt {
+    margin-top: 0.4rem;
+  }
+
+  dd {
+    margin-left: 0.5rem;
+  }
+
+  .busca-linha {
+    flex-direction: column;
+  }
+}

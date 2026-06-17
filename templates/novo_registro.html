@@ -2,9 +2,12 @@
 {% block titulo %}Registrar Cuidado — {{ planta.nome }}{% endblock %}
 
 {% block conteudo %}
-<h1>Registrar Cuidado: {{ planta.nome }}</h1>
+<div class="page-header">
+  <h1>Registrar Cuidado: {{ planta.nome }}</h1>
+  <a href="{{ url_for('planta.detalhes', planta_id=planta.id) }}">← Voltar</a>
+</div>
 
-<form method="POST" action="{{ url_for('registro.novo', planta_id=planta.id) }}">
+<form method="POST" action="{{ url_for('registro.novo', planta_id=planta.id) }}" class="form-container">
   <label for="tipo">Tipo de cuidado</label>
   <select id="tipo" name="tipo">
     {% for t in tipos %}

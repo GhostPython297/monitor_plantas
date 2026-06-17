@@ -1,0 +1,1389 @@
+{
+  "especies": {
+    "2773": {
+      "id": "2773",
+      "nome_comum": "golden pothos",
+      "nome_cientifico": "Epipremnum aureum",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "2774": {
+      "id": "2774",
+      "nome_comum": "pothos",
+      "nome_cientifico": "Epipremnum aureum 'Neon'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "7276": {
+      "id": "7276",
+      "nome_comum": "satin pothos",
+      "nome_cientifico": "Scindapsus pictus 'Argyraeus'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5257": {
+      "id": "5257",
+      "nome_comum": "Swiss cheese plant",
+      "nome_cientifico": "Monstera deliciosa",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5258": {
+      "id": "5258",
+      "nome_comum": "variegated Swiss cheese plant",
+      "nome_cientifico": "Monstera deliciosa 'Variegata'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "855": {
+      "id": "855",
+      "nome_comum": "anthurium",
+      "nome_cientifico": "Anthurium andraeanum",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "856": {
+      "id": "856",
+      "nome_comum": "anthurium",
+      "nome_cientifico": "Anthurium crassinervium",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "8494": {
+      "id": "8494",
+      "nome_comum": "anthurium",
+      "nome_cientifico": "Anthurium andraeanum (incl. hybrid cvs.)",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7463": {
+      "id": "7463",
+      "nome_comum": "peace lily",
+      "nome_cientifico": "Spathiphyllum (group)",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "8763": {
+      "id": "8763",
+      "nome_comum": "peace lily",
+      "nome_cientifico": "Spathiphyllum cvs.",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7163": {
+      "id": "7163",
+      "nome_comum": "bowstring hemp",
+      "nome_cientifico": "Sansevieria cylindrica",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7164": {
+      "id": "7164",
+      "nome_comum": "blue sansevieria",
+      "nome_cientifico": "Sansevieria ehrenberghii 'Samurai Dwarf'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7165": {
+      "id": "7165",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria 'Fernwood Mikado'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7166": {
+      "id": "7166",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria kirkii 'Silver Blue'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7167": {
+      "id": "7167",
+      "nome_comum": "Mason's Congo sansevieria",
+      "nome_cientifico": "Sansevieria masoniana",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7168": {
+      "id": "7168",
+      "nome_comum": "snake plant",
+      "nome_cientifico": "Sansevieria patens",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7169": {
+      "id": "7169",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria 'Starfish'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7170": {
+      "id": "7170",
+      "nome_comum": "bowstring hemp",
+      "nome_cientifico": "Sansevieria suffruticosa",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7171": {
+      "id": "7171",
+      "nome_comum": "viper's bowstring hemp",
+      "nome_cientifico": "Sansevieria trifasciata",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7172": {
+      "id": "7172",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Bantel's Sensation'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7173": {
+      "id": "7173",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Black Coral'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7174": {
+      "id": "7174",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Black Robusta'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7175": {
+      "id": "7175",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Black Star'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7176": {
+      "id": "7176",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Dwarf Laurentii'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7177": {
+      "id": "7177",
+      "nome_comum": "mother-in-law's tongue",
+      "nome_cientifico": "Sansevieria trifasciata 'Gold Flame'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5465": {
+      "id": "5465",
+      "nome_comum": "Boston fern",
+      "nome_cientifico": "Nephrolepis exaltata",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5466": {
+      "id": "5466",
+      "nome_comum": "Boston fern",
+      "nome_cientifico": "Nephrolepis exaltata 'Bostoniensis'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5467": {
+      "id": "5467",
+      "nome_comum": "Boston fern",
+      "nome_cientifico": "Nephrolepis exaltata 'Tiger Fern'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5837": {
+      "id": "5837",
+      "nome_comum": "moth orchid",
+      "nome_cientifico": "Phalaenopsis (group)",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5809": {
+      "id": "5809",
+      "nome_comum": "rose cactus",
+      "nome_cientifico": "Pereskia grandifolia",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7265": {
+      "id": "7265",
+      "nome_comum": "Christmas cactus",
+      "nome_cientifico": "Schlumbergera buckleyi",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7266": {
+      "id": "7266",
+      "nome_comum": "Christmas cactus",
+      "nome_cientifico": "Schlumbergera truncata",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "8551": {
+      "id": "8551",
+      "nome_comum": "golden barrel cactus",
+      "nome_cientifico": "Echinocactus grusonii",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "8601": {
+      "id": "8601",
+      "nome_comum": "Easter cactus",
+      "nome_cientifico": "Hatiora x graeseri",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "728": {
+      "id": "728",
+      "nome_comum": "aloe",
+      "nome_cientifico": "Aloe vera",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "4557": {
+      "id": "4557",
+      "nome_comum": "velvet leaf kalanchoe",
+      "nome_cientifico": "Kalanchoe beharensis",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "4558": {
+      "id": "4558",
+      "nome_comum": "kalanchoe",
+      "nome_cientifico": "Kalanchoe blossfeldiana",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "4559": {
+      "id": "4559",
+      "nome_comum": "kalanchoe",
+      "nome_cientifico": "Kalanchoe thyrsiflora 'Flapjacks'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "2954": {
+      "id": "2954",
+      "nome_comum": "weeping fig",
+      "nome_cientifico": "Ficus benjamina",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "2955": {
+      "id": "2955",
+      "nome_comum": "weeping fig",
+      "nome_cientifico": "Ficus benjamina 'Variegata'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1194": {
+      "id": "1194",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Art Hodes'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1195": {
+      "id": "1195",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia benariensis BIG SERIES",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1196": {
+      "id": "1196",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Bepared' DRAGON WING RED",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1197": {
+      "id": "1197",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia boliviensis BOSSA NOVA RED",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1198": {
+      "id": "1198",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Canary Wing'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1199": {
+      "id": "1199",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Casper'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1200": {
+      "id": "1200",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Curly Fireflush'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1201": {
+      "id": "1201",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Dangling Pearls'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1202": {
+      "id": "1202",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Emerald Glow'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1203": {
+      "id": "1203",
+      "nome_comum": "hybrid tuberous begonia",
+      "nome_cientifico": "Begonia FUNKY PINK",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1204": {
+      "id": "1204",
+      "nome_comum": "hardy begonia",
+      "nome_cientifico": "Begonia grandis",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1205": {
+      "id": "1205",
+      "nome_comum": "hardy begonia",
+      "nome_cientifico": "Begonia grandis subsp. evansiana",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1206": {
+      "id": "1206",
+      "nome_comum": "hardy begonia",
+      "nome_cientifico": "Begonia grandis subsp. evansiana 'Alba'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1207": {
+      "id": "1207",
+      "nome_comum": "hardy begonia",
+      "nome_cientifico": "Begonia grandis 'Wildwood Premier'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1208": {
+      "id": "1208",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Green Gold'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1209": {
+      "id": "1209",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Gryphon'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1210": {
+      "id": "1210",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Lime Royale'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1211": {
+      "id": "1211",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Martha Stewart'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1212": {
+      "id": "1212",
+      "nome_comum": "iron cross begonia",
+      "nome_cientifico": "Begonia masoniana",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1213": {
+      "id": "1213",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Penny Lahn'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1214": {
+      "id": "1214",
+      "nome_comum": "rex begonia",
+      "nome_cientifico": "Begonia rex-cultorum",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1215": {
+      "id": "1215",
+      "nome_comum": "rex begonia",
+      "nome_cientifico": "Begonia rex-cultorum 'Super Curl'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1216": {
+      "id": "1216",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'River Nile'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1217": {
+      "id": "1217",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia (Semperflorens Cultorum Group)",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1218": {
+      "id": "1218",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia semperflorens 'Senator Deep Rose'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1219": {
+      "id": "1219",
+      "nome_comum": "wax begonia",
+      "nome_cientifico": "Begonia semperflorens-cultorum 'Harmony Scarlet'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1220": {
+      "id": "1220",
+      "nome_comum": "angelwing begonia",
+      "nome_cientifico": "Begonia 'Sinbad'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1221": {
+      "id": "1221",
+      "nome_comum": "begonia",
+      "nome_cientifico": "Begonia 'Solar Flare'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1222": {
+      "id": "1222",
+      "nome_comum": "angelwing begonia",
+      "nome_cientifico": "Begonia 'Sophia'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "1223": {
+      "id": "1223",
+      "nome_comum": "hybrid tuberous begonia",
+      "nome_cientifico": "Begonia tuberhybrida 'Jurassic Pink Splash'",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "7030": {
+      "id": "7030",
+      "nome_comum": "African violet",
+      "nome_cientifico": "Saintpaulia ionantha",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "2531": {
+      "id": "2531",
+      "nome_comum": "dragontree",
+      "nome_cientifico": "Dracaena marginata",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "5443": {
+      "id": "5443",
+      "nome_comum": "blushing bromeliad",
+      "nome_cientifico": "Neoregelia carolinae f. tricolor",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "8791": {
+      "id": "8791",
+      "nome_comum": "bromeliad",
+      "nome_cientifico": "Vriesea spp.",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7639": {
+      "id": "7639",
+      "nome_comum": "American evergreen",
+      "nome_cientifico": "Syngonium podophyllum",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "7640": {
+      "id": "7640",
+      "nome_comum": "arrowhead plant",
+      "nome_cientifico": "Syngonium podophyllum 'Neon Robusta'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5868": {
+      "id": "5868",
+      "nome_comum": "horsehead philodendron",
+      "nome_cientifico": "Philodendron bipinnatifidum",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5869": {
+      "id": "5869",
+      "nome_comum": "vilevine",
+      "nome_cientifico": "Philodendron hederaceum",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5870": {
+      "id": "5870",
+      "nome_comum": "philodendron",
+      "nome_cientifico": "Philodendron 'Pink Princess'",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "5871": {
+      "id": "5871",
+      "nome_comum": "philodendron",
+      "nome_cientifico": "Philodendron 'Winterbourn' XANADU",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "8685": {
+      "id": "8685",
+      "nome_comum": "hybrid philodendron",
+      "nome_cientifico": "Philodendron x hybrida",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "6554": {
+      "id": "6554",
+      "nome_comum": "lady palm",
+      "nome_cientifico": "Rhapis excelsa",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
+    "1999": {
+      "id": "1999",
+      "nome_comum": "croton",
+      "nome_cientifico": "Codiaeum variegatum",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    },
+    "2000": {
+      "id": "2000",
+      "nome_comum": "croton",
+      "nome_cientifico": "Codiaeum variegatum var. pictum",
+      "frequencia_rega": 7,
+      "luz": "None",
+      "temp_minima": 0
+    }
+  },
+  "buscas": {
+    "pothos": [
+      {
+        "id": "2773",
+        "nome_comum": "golden pothos",
+        "nome_cientifico": "Epipremnum aureum",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "2774",
+        "nome_comum": "pothos",
+        "nome_cientifico": "Epipremnum aureum 'Neon'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "7276",
+        "nome_comum": "satin pothos",
+        "nome_cientifico": "Scindapsus pictus 'Argyraeus'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "monstera": [
+      {
+        "id": "5257",
+        "nome_comum": "Swiss cheese plant",
+        "nome_cientifico": "Monstera deliciosa",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5258",
+        "nome_comum": "variegated Swiss cheese plant",
+        "nome_cientifico": "Monstera deliciosa 'Variegata'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "anthurium": [
+      {
+        "id": "855",
+        "nome_comum": "anthurium",
+        "nome_cientifico": "Anthurium andraeanum",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "856",
+        "nome_comum": "anthurium",
+        "nome_cientifico": "Anthurium crassinervium",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "8494",
+        "nome_comum": "anthurium",
+        "nome_cientifico": "Anthurium andraeanum (incl. hybrid cvs.)",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "spathiphyllum": [
+      {
+        "id": "7463",
+        "nome_comum": "peace lily",
+        "nome_cientifico": "Spathiphyllum (group)",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "8763",
+        "nome_comum": "peace lily",
+        "nome_cientifico": "Spathiphyllum cvs.",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "sansevieria": [
+      {
+        "id": "7163",
+        "nome_comum": "bowstring hemp",
+        "nome_cientifico": "Sansevieria cylindrica",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7164",
+        "nome_comum": "blue sansevieria",
+        "nome_cientifico": "Sansevieria ehrenberghii 'Samurai Dwarf'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7165",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria 'Fernwood Mikado'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7166",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria kirkii 'Silver Blue'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7167",
+        "nome_comum": "Mason's Congo sansevieria",
+        "nome_cientifico": "Sansevieria masoniana",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7168",
+        "nome_comum": "snake plant",
+        "nome_cientifico": "Sansevieria patens",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7169",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria 'Starfish'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7170",
+        "nome_comum": "bowstring hemp",
+        "nome_cientifico": "Sansevieria suffruticosa",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7171",
+        "nome_comum": "viper's bowstring hemp",
+        "nome_cientifico": "Sansevieria trifasciata",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7172",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Bantel's Sensation'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7173",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Black Coral'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7174",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Black Robusta'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7175",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Black Star'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7176",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Dwarf Laurentii'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7177",
+        "nome_comum": "mother-in-law's tongue",
+        "nome_cientifico": "Sansevieria trifasciata 'Gold Flame'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "nephrolepis": [
+      {
+        "id": "5465",
+        "nome_comum": "Boston fern",
+        "nome_cientifico": "Nephrolepis exaltata",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5466",
+        "nome_comum": "Boston fern",
+        "nome_cientifico": "Nephrolepis exaltata 'Bostoniensis'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5467",
+        "nome_comum": "Boston fern",
+        "nome_cientifico": "Nephrolepis exaltata 'Tiger Fern'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "phalaenopsis": [
+      {
+        "id": "5837",
+        "nome_comum": "moth orchid",
+        "nome_cientifico": "Phalaenopsis (group)",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "cactus": [
+      {
+        "id": "5809",
+        "nome_comum": "rose cactus",
+        "nome_cientifico": "Pereskia grandifolia",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7265",
+        "nome_comum": "Christmas cactus",
+        "nome_cientifico": "Schlumbergera buckleyi",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7266",
+        "nome_comum": "Christmas cactus",
+        "nome_cientifico": "Schlumbergera truncata",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "8551",
+        "nome_comum": "golden barrel cactus",
+        "nome_cientifico": "Echinocactus grusonii",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "8601",
+        "nome_comum": "Easter cactus",
+        "nome_cientifico": "Hatiora x graeseri",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "echeveria": [],
+    "aloe vera": [
+      {
+        "id": "728",
+        "nome_comum": "aloe",
+        "nome_cientifico": "Aloe vera",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      }
+    ],
+    "kalanchoe": [
+      {
+        "id": "4557",
+        "nome_comum": "velvet leaf kalanchoe",
+        "nome_cientifico": "Kalanchoe beharensis",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "4558",
+        "nome_comum": "kalanchoe",
+        "nome_cientifico": "Kalanchoe blossfeldiana",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "4559",
+        "nome_comum": "kalanchoe",
+        "nome_cientifico": "Kalanchoe thyrsiflora 'Flapjacks'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "ficus benjamina": [
+      {
+        "id": "2954",
+        "nome_comum": "weeping fig",
+        "nome_cientifico": "Ficus benjamina",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "2955",
+        "nome_comum": "weeping fig",
+        "nome_cientifico": "Ficus benjamina 'Variegata'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      }
+    ],
+    "begonia": [
+      {
+        "id": "1194",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Art Hodes'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1195",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia benariensis BIG SERIES",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1196",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Bepared' DRAGON WING RED",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1197",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia boliviensis BOSSA NOVA RED",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1198",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Canary Wing'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1199",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Casper'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1200",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Curly Fireflush'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1201",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Dangling Pearls'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1202",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Emerald Glow'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1203",
+        "nome_comum": "hybrid tuberous begonia",
+        "nome_cientifico": "Begonia FUNKY PINK",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1204",
+        "nome_comum": "hardy begonia",
+        "nome_cientifico": "Begonia grandis",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1205",
+        "nome_comum": "hardy begonia",
+        "nome_cientifico": "Begonia grandis subsp. evansiana",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1206",
+        "nome_comum": "hardy begonia",
+        "nome_cientifico": "Begonia grandis subsp. evansiana 'Alba'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1207",
+        "nome_comum": "hardy begonia",
+        "nome_cientifico": "Begonia grandis 'Wildwood Premier'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1208",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Green Gold'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1209",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Gryphon'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1210",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Lime Royale'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1211",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Martha Stewart'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1212",
+        "nome_comum": "iron cross begonia",
+        "nome_cientifico": "Begonia masoniana",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1213",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Penny Lahn'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1214",
+        "nome_comum": "rex begonia",
+        "nome_cientifico": "Begonia rex-cultorum",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1215",
+        "nome_comum": "rex begonia",
+        "nome_cientifico": "Begonia rex-cultorum 'Super Curl'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1216",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'River Nile'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1217",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia (Semperflorens Cultorum Group)",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1218",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia semperflorens 'Senator Deep Rose'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1219",
+        "nome_comum": "wax begonia",
+        "nome_cientifico": "Begonia semperflorens-cultorum 'Harmony Scarlet'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1220",
+        "nome_comum": "angelwing begonia",
+        "nome_cientifico": "Begonia 'Sinbad'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1221",
+        "nome_comum": "begonia",
+        "nome_cientifico": "Begonia 'Solar Flare'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1222",
+        "nome_comum": "angelwing begonia",
+        "nome_cientifico": "Begonia 'Sophia'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "1223",
+        "nome_comum": "hybrid tuberous begonia",
+        "nome_cientifico": "Begonia tuberhybrida 'Jurassic Pink Splash'",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      }
+    ],
+    "saintpaulia": [
+      {
+        "id": "7030",
+        "nome_comum": "African violet",
+        "nome_cientifico": "Saintpaulia ionantha",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "dracaena marginata": [
+      {
+        "id": "2531",
+        "nome_comum": "dragontree",
+        "nome_cientifico": "Dracaena marginata",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      }
+    ],
+    "bromelia": [
+      {
+        "id": "5443",
+        "nome_comum": "blushing bromeliad",
+        "nome_cientifico": "Neoregelia carolinae f. tricolor",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "8791",
+        "nome_comum": "bromeliad",
+        "nome_cientifico": "Vriesea spp.",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "syngonium": [
+      {
+        "id": "7639",
+        "nome_comum": "American evergreen",
+        "nome_cientifico": "Syngonium podophyllum",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "7640",
+        "nome_comum": "arrowhead plant",
+        "nome_cientifico": "Syngonium podophyllum 'Neon Robusta'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "philodendron": [
+      {
+        "id": "5868",
+        "nome_comum": "horsehead philodendron",
+        "nome_cientifico": "Philodendron bipinnatifidum",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5869",
+        "nome_comum": "vilevine",
+        "nome_cientifico": "Philodendron hederaceum",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5870",
+        "nome_comum": "philodendron",
+        "nome_cientifico": "Philodendron 'Pink Princess'",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "5871",
+        "nome_comum": "philodendron",
+        "nome_cientifico": "Philodendron 'Winterbourn' XANADU",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      },
+      {
+        "id": "8685",
+        "nome_comum": "hybrid philodendron",
+        "nome_cientifico": "Philodendron x hybrida",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "rhapis": [
+      {
+        "id": "6554",
+        "nome_comum": "lady palm",
+        "nome_cientifico": "Rhapis excelsa",
+        "frequencia_rega": 7,
+        "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+        "temp_minima": 0
+      }
+    ],
+    "codiaeum": [
+      {
+        "id": "1999",
+        "nome_comum": "croton",
+        "nome_cientifico": "Codiaeum variegatum",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      },
+      {
+        "id": "2000",
+        "nome_comum": "croton",
+        "nome_cientifico": "Codiaeum variegatum var. pictum",
+        "frequencia_rega": 7,
+        "luz": "None",
+        "temp_minima": 0
+      }
+    ]
+  }
+}

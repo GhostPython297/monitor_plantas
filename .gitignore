@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 dados/
 .idea/
+
+# Variáveis de ambiente — NUNCA commitar o .env real
+.env
