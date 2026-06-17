@@ -15,22 +15,41 @@
       </div>
     </form>
 
-    {% if resultados %}
-    <ul class="mt-4 flex flex-col gap-2">
-      {% for esp in resultados %}
-      <li class="glass-card p-3 flex items-center justify-between gap-3 flex-wrap">
-        <span class="text-green-900 text-sm">
-          <strong>{{ esp.nome_comum }}</strong> — <em>{{ esp.nome_cientifico }}</em>
-          <br><span class="text-green-600">💧 Rega a cada {{ esp.frequencia_rega }} dias</span>
-        </span>
-        <form method="POST" action="{{ url_for('planta.nova') }}">
-          <input type="hidden" name="acao" value="selecionar">
-          <input type="hidden" name="especie_id" value="{{ esp.id }}">
-          <button type="submit" class="glass-btn-primary text-sm">Selecionar</button>
-        </form>
-      </li>
-      {% endfor %}
-    </ul>
+    {% if query is defined and query != None %}
+      {% if resultados %}
+      <div class="mt-3 rounded-xl border border-green-200 bg-white/60 backdrop-blur shadow-lg overflow-hidden">
+        <p class="text-xs text-green-700 px-3 pt-2 pb-1 font-medium border-b border-green-100">{{ resultados|length }} resultado(s) encontrado(s) — selecione uma espécie:</p>
+        <ul class="divide-y divide-green-100 max-h-80 overflow-y-auto">
+          {% for esp in resultados %}
+          <li>
+            <form method="POST" action="{{ url_for('planta.nova') }}">
+              <input type="hidden" name="acao" value="selecionar">
+              <input type="hidden" name="especie_id" value="{{ esp.id }}">
+              <button type="submit" class="w-full text-left flex items-center gap-3 px-3 py-2 hover:bg-green-50 transition-colors">
+                {% if esp.imagem_url %}
+                <img src="{{ esp.imagem_url }}" alt="{{ esp.nome_comum }}"
+                     class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-green-100">
+                {% else %}
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-green-100 flex-shrink-0 text-2xl">🌿</div>
+                {% endif %}
+                <div class="flex-1 min-w-0">
+                  <p class="text-green-900 font-semibold text-sm truncate">{{ esp.nome_comum }}</p>
+                  <p class="text-green-600 text-xs italic truncate">{{ esp.nome_cientifico }}</p>
+                  <p class="text-green-500 text-xs">💧 Rega a cada {{ esp.frequencia_rega }} dias</p>
+                </div>
+                <span class="text-green-400 text-xs flex-shrink-0">Selecionar →</span>
+              </button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <div class="mt-3 rounded-xl border border-amber-200 bg-amber-50/60 px-4 py-3 flex items-center gap-2 text-amber-800 text-sm">
+        <span class="text-xl">🔍</span>
+        Nenhuma espécie encontrada para <strong class="mx-1">"{{ query }}"</strong>. Tente outro nome.
+      </div>
+      {% endif %}
     {% endif %}
   </div>
 
@@ -41,9 +60,18 @@
 
       {% if especie_selecionada %}
       <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
-      <div class="glass-card p-3 text-green-800 text-sm">
-        ✅ <strong>Espécie selecionada:</strong> {{ especie_selecionada.nome_comum }}
-        <em>({{ especie_selecionada.nome_cientifico }})</em>
+      <div class="glass-card p-3 flex items-center gap-3">
+        {% if especie_selecionada.imagem_url %}
+        <img src="{{ especie_selecionada.imagem_url }}" alt="{{ especie_selecionada.nome_comum }}"
+             class="w-14 h-14 rounded-xl object-cover flex-shrink-0 border border-green-200">
+        {% else %}
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center bg-green-100 flex-shrink-0 text-3xl">🌿</div>
+        {% endif %}
+        <div>
+          <p class="text-green-800 text-sm font-semibold">✅ Espécie selecionada</p>
+          <p class="text-green-900 font-bold">{{ especie_selecionada.nome_comum }}</p>
+          <p class="text-green-600 text-xs italic">{{ especie_selecionada.nome_cientifico }}</p>
+        </div>
       </div>
       {% endif %}
 

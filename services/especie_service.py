@@ -31,6 +31,7 @@ _FALLBACK_ESPECIES = [
         "frequencia_rega": 3,
         "luz": "Luz indireta",
         "temp_minima": 10,
+        "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Nephrolepis_exaltata_2.jpg/320px-Nephrolepis_exaltata_2.jpg",
     },
     {
         "id": "local-2",
@@ -39,6 +40,7 @@ _FALLBACK_ESPECIES = [
         "frequencia_rega": 14,
         "luz": "Pleno sol",
         "temp_minima": 5,
+        "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Echeveria_elegans_2.jpg/320px-Echeveria_elegans_2.jpg",
     },
     {
         "id": "local-3",
@@ -47,6 +49,7 @@ _FALLBACK_ESPECIES = [
         "frequencia_rega": 10,
         "luz": "Luz indireta",
         "temp_minima": 10,
+        "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sansevieria_trifasciata_Prain.jpg/320px-Sansevieria_trifasciata_Prain.jpg",
     },
     {
         "id": "local-4",
@@ -55,6 +58,7 @@ _FALLBACK_ESPECIES = [
         "frequencia_rega": 7,
         "luz": "Luz indireta",
         "temp_minima": 15,
+        "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Phalaenopsis_RWTH_01.jpg/320px-Phalaenopsis_RWTH_01.jpg",
     },
     {
         "id": "local-5",
@@ -63,6 +67,7 @@ _FALLBACK_ESPECIES = [
         "frequencia_rega": 21,
         "luz": "Pleno sol",
         "temp_minima": 5,
+        "imagem_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Cleistocactus_strausii_ies.jpg/320px-Cleistocactus_strausii_ies.jpg",
     },
 ]
 
@@ -116,6 +121,9 @@ def _normalizar_especie(item: dict) -> dict:
     except (ValueError, TypeError):
         temp_minima = 0
 
+    default_image = item.get("default_image") or {}
+    imagem_url = default_image.get("medium_url") or default_image.get("small_url") or default_image.get("original_url") or ""
+
     return {
         "id": str(item.get("id", "")),
         "nome_comum": item.get("common_name", nome_cientifico),
@@ -123,6 +131,7 @@ def _normalizar_especie(item: dict) -> dict:
         "frequencia_rega": _frequencia_em_dias(item.get("watering", "average")),
         "luz": luz,
         "temp_minima": temp_minima,
+        "imagem_url": imagem_url,
     }
 
 
