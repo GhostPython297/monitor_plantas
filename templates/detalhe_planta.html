@@ -28,6 +28,15 @@
 
 <div class="glass-card p-6 mb-6">
   <h2 class="text-lg font-semibold text-green-800 mb-4">Informações</h2>
+  {% if planta.especie %}
+    {% set imagem = planta.especie.get('imagem', '') %}
+    {% if imagem %}
+    <div class="mb-4">
+      <img src="{{ imagem }}" alt="{{ planta.especie.get('nome_comum', planta.nome) }}"
+           style="max-width:300px; max-height:300px; object-fit:cover; border-radius:8px;">
+    </div>
+    {% endif %}
+  {% endif %}
   <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3">
     {% if planta.especie %}
     <div class="glass-card p-3">
