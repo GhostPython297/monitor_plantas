@@ -50,14 +50,18 @@ class Planta:
         self.log_edicoes: List[dict] = log_edicoes or []
 
     def _data_ultimo_cuidado(self) -> Optional[date]:
-        """Retorna a data do cuidado mais recente registrado.
+        """Retorna a data da rega mais recente registrada.
+
+        Considera apenas registros do tipo 'rega', ignorando adubação e poda,
+        pois o intervalo de referência (frequencia_rega) é exclusivo para rega.
 
         Returns:
-            Data do último cuidado ou None se não houver nenhum.
+            Data da última rega ou None se não houver nenhuma rega registrada.
         """
-        if not self.historico_cuidados:
+        regas = [c for c in self.historico_cuidados if c.tipo == "rega"]
+        if not regas:
             return None
-        return max(c.data for c in self.historico_cuidados)
+        return max(c.data for c in regas)
 
     def dias_sem_cuidado(self) -> Optional[int]:
         """Calcula quantos dias se passaram desde o último cuidado registrado.
