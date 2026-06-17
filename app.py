@@ -1,6 +1,7 @@
 """Ponto de entrada da aplicação Monitor de Plantas."""
 
 from flask import Flask, redirect, session, url_for
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from controllers.colaborador_controller import colaborador_bp
 from controllers.planta_controller import planta_bp
@@ -9,7 +10,10 @@ from controllers.alerta_controller import alerta_bp
 from services.repositorio import carregar_plantas_do_colaborador
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 app.secret_key = "chave-secreta-dev"  # TODO: mover para variável de ambiente antes de produção
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
+app.config["SESSION_COOKIE_SECURE"] = True
 
 app.register_blueprint(colaborador_bp)
 app.register_blueprint(planta_bp)
