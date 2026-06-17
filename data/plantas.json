@@ -146,10 +146,25 @@
   {
     "id": "f633bcea-ec91-4be4-b97c-f6557243d4c4",
     "nome": "Minha planta",
-    "especie": {},
+    "especie": {
+      "id": "5257",
+      "nome_comum": "Swiss cheese plant",
+      "nome_cientifico": "Monstera deliciosa",
+      "frequencia_rega": 7,
+      "luz": "Upgrade Plans To Premium/Supreme - https://perenual.com/subscription-api-pricing. I'm sorry",
+      "temp_minima": 0
+    },
     "frequencia_rega": 7,
     "colaborador_id": "ef444c50-0d51-44e9-bf25-729e32441263",
     "historico_cuidados": [],
-    "log_edicoes": []
+    "log_edicoes": [
+      {
+        "data": "2026-06-17",
+        "colaborador_id": "ef444c50-0d51-44e9-bf25-729e32441263",
+        "alteracoes": [
+          "especie: '—' → 'Swiss cheese plant'"
+        ]
+      }
+    ]
   }
 ]
