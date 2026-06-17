@@ -26,8 +26,8 @@
               <input type="hidden" name="acao" value="selecionar">
               <input type="hidden" name="especie_id" value="{{ esp.id }}">
               <button type="submit" class="w-full text-left flex items-center gap-3 px-3 py-2 hover:bg-green-50 transition-colors">
-                {% if esp.imagem_url %}
-                <img src="{{ esp.imagem_url }}" alt="{{ esp.nome_comum }}"
+                {% if esp.imagem %}
+                <img src="{{ esp.imagem }}" alt="{{ esp.nome_comum }}"
                      class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-green-100">
                 {% else %}
                 <div class="w-12 h-12 rounded-lg flex items-center justify-center bg-green-100 flex-shrink-0 text-2xl">🌿</div>
@@ -61,8 +61,8 @@
       {% if especie_selecionada %}
       <input type="hidden" name="especie_id" value="{{ especie_selecionada.id }}">
       <div class="glass-card p-3 flex items-center gap-3">
-        {% if especie_selecionada.imagem_url %}
-        <img src="{{ especie_selecionada.imagem_url }}" alt="{{ especie_selecionada.nome_comum }}"
+        {% if especie_selecionada.imagem %}
+        <img src="{{ especie_selecionada.imagem }}" alt="{{ especie_selecionada.nome_comum }}"
              class="w-14 h-14 rounded-xl object-cover flex-shrink-0 border border-green-200">
         {% else %}
         <div class="w-14 h-14 rounded-xl flex items-center justify-center bg-green-100 flex-shrink-0 text-3xl">🌿</div>

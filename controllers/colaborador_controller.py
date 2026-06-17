@@ -49,6 +49,7 @@ def login():
         colaborador = buscar_colaborador_por_email(email)
 
         if colaborador and colaborador.verificar_senha(senha):
+            atualizar_colaborador(colaborador)
             session["colaborador_id"] = colaborador.id
             session["colaborador_nome"] = colaborador.nome
             return redirect(url_for("planta.listar"))
@@ -128,7 +129,7 @@ def perfil():
         colaborador.email = novo_email
 
         if nova_senha:
-            colaborador.senha_hash = Colaborador._hash_senha(nova_senha)
+            colaborador.set_senha(nova_senha)
 
         atualizar_colaborador(colaborador)
         session["colaborador_nome"] = colaborador.nome

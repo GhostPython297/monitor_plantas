@@ -1,7 +1,8 @@
 """Módulo de domínio para colaboradores do sistema."""
 
-import hashlib
 import uuid
+
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class Colaborador:
@@ -11,7 +12,7 @@ class Colaborador:
         id (str): Identificador único do colaborador.
         nome (str): Nome completo do colaborador.
         email (str): Endereço de e-mail (usado como login).
-        senha_hash (str): Hash SHA-256 da senha do colaborador.
+        senha_hash (str): Hash da senha do colaborador (werkzeug PBKDF2).
     """
 
     def __init__(self, nome: str, email: str, senha_hash: str, id: str = None):
@@ -30,15 +31,23 @@ class Colaborador:
 
     @staticmethod
     def _hash_senha(senha: str) -> str:
-        """Retorna o hash SHA-256 de uma senha em texto plano.
+        """Retorna o hash seguro de uma senha em texto plano (PBKDF2 + salt).
 
         Args:
             senha: Senha em texto plano.
 
         Returns:
-            String hexadecimal com o hash SHA-256.
+            String com o hash seguro gerado pelo werkzeug.
         """
-        return hashlib.sha256(senha.encode("utf-8")).hexdigest()
+        return generate_password_hash(senha)
+
+    def set_senha(self, nova_senha: str) -> None:
+        """Atualiza a senha do colaborador aplicando hash seguro.
+
+        Args:
+            nova_senha: Nova senha em texto plano.
+        """
+        self.senha_hash = generate_password_hash(nova_senha)
 
     @classmethod
     def criar(cls, nome: str, email: str, senha: str) -> "Colaborador":
@@ -52,10 +61,14 @@ class Colaborador:
         Returns:
             Nova instância de Colaborador com senha hasheada.
         """
-        return cls(nome=nome, email=email, senha_hash=cls._hash_senha(senha))
+        return cls(nome=nome, email=email, senha_hash=generate_password_hash(senha))
 
     def verificar_senha(self, senha: str) -> bool:
         """Verifica se a senha fornecida corresponde ao hash armazenado.
+
+        Suporta hashes legados em SHA-256 puro (64 hex chars) para compatibilidade
+        com contas criadas antes da migração para werkzeug PBKDF2.
+        Ao autenticar com hash legado, atualiza automaticamente para o novo formato.
 
         Args:
             senha: Senha em texto plano a ser verificada.
@@ -63,7 +76,15 @@ class Colaborador:
         Returns:
             True se a senha estiver correta, False caso contrário.
         """
-        return self.senha_hash == self._hash_senha(senha)
+        import hashlib
+        _SHA256_RE = 64
+        if len(self.senha_hash) == _SHA256_RE and all(c in "0123456789abcdef" for c in self.senha_hash):
+            legado = hashlib.sha256(senha.encode("utf-8")).hexdigest()
+            if legado == self.senha_hash:
+                self.senha_hash = generate_password_hash(senha)
+                return True
+            return False
+        return check_password_hash(self.senha_hash, senha)
 
     def to_dict(self) -> dict:
         """Serializa o colaborador em dicionário para persistência JSON.

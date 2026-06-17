@@ -62,13 +62,16 @@ def nova():
             frequencia_raw = request.form.get("frequencia_rega", "7")
 
             if not nome:
+                especie_selecionada = obter_especie(especie_id) if especie_id else None
                 flash("O nome da planta é obrigatório.", "erro")
-                return render_template("nova_planta.html")
+                return render_template("nova_planta.html", especie_selecionada=especie_selecionada)
 
             especie = obter_especie(especie_id) if especie_id else {}
 
             try:
                 frequencia = int(frequencia_raw)
+                if frequencia <= 0:
+                    frequencia = 7
             except ValueError:
                 frequencia = 7
 
@@ -144,6 +147,8 @@ def editar(planta_id):
 
         try:
             nova_freq = int(frequencia_raw)
+            if nova_freq <= 0:
+                nova_freq = 7
             if nova_freq != planta.frequencia_rega:
                 alteracoes.append(f"frequencia_rega: {planta.frequencia_rega} → {nova_freq}")
                 planta.frequencia_rega = nova_freq

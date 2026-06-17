@@ -13,7 +13,7 @@ from services.repositorio import carregar_plantas_do_colaborador
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
-app.secret_key = "chave-secreta-dev"  # TODO: mover para variável de ambiente antes de produção
+app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(32)
 app.config["SESSION_COOKIE_SECURE"] = os.environ.get("FLASK_ENV") == "production"
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 

@@ -45,6 +45,8 @@ def novo(planta_id):
 
         try:
             data_cuidado = date.fromisoformat(data_str)
+            if data_cuidado > date.today():
+                data_cuidado = date.today()
         except ValueError:
             data_cuidado = date.today()
 
@@ -64,22 +66,3 @@ def novo(planta_id):
     )
 
 
-@registro_bp.route("/planta/<planta_id>")
-@login_required
-def historico(planta_id):
-    """Exibe o histórico completo de cuidados de uma planta (ordem cronológica inversa)."""
-    planta = buscar_planta_por_id(planta_id)
-    if not planta:
-        flash("Planta não encontrada.", "erro")
-        return redirect(url_for("planta.listar"))
-
-    if planta.colaborador_id != session["colaborador_id"]:
-        flash("Acesso negado.", "erro")
-        return redirect(url_for("planta.listar"))
-
-    historico_ordenado = sorted(
-        planta.historico_cuidados, key=lambda c: c.data, reverse=True
-    )
-    return render_template(
-        "detalhe_planta.html", planta=planta, historico=historico_ordenado
-    )
